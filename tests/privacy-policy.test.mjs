@@ -11,7 +11,7 @@ test('links the privacy policy from the collection notice and footer', () => {
 
   assert.equal(privacyLinks.length, 2);
   assert.match(landing, /By joining the waitlist, you agree to our <a href="privacy\.html">Privacy Policy<\/a>\./);
-  assert.match(landing, /<footer>[\s\S]*?<a href="privacy\.html">Privacy<\/a>/);
+  assert.match(landing, /<footer>[\s\S]*?<a\b[^>]*href="privacy\.html"[^>]*>Privacy<\/a>/);
 });
 
 test('states the policy scope and privacy request route', () => {
