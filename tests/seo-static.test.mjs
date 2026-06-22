@@ -12,6 +12,16 @@ const pages = [
 const read = (path) => existsSync(path) ? readFileSync(path, "utf8") : "";
 
 describe("public SEO assets", () => {
+  test("positions the homepage around irrigation decisions", () => {
+    const html = read("index.html");
+
+    expect(html).toContain("Irrigation Scheduling &amp; Soil-Moisture Forecasting | Irrigant");
+    expect(html).toContain("Know when to water. And how much.");
+    expect(html).toContain('"@type":"Organization"');
+    expect(html).toContain('"@type":"WebSite"');
+    expect(html).toContain('href="irrigation-scheduling.html"');
+  });
+
   test("publishes crawler discovery for every public page", () => {
     expect(read("robots.txt")).toContain("Sitemap: https://irrigant.xyz/sitemap.xml");
     const sitemap = read("sitemap.xml");
@@ -23,9 +33,11 @@ describe("public SEO assets", () => {
   });
 
   test("gives every public page canonical and social metadata", () => {
+    expect(existsSync("assets/irrigant-social-card.png")).toBe(true);
+
     for (const page of pages) {
       const html = read(page);
-      expect(html).toMatch(/<link rel="canonical" href="https:\/\/irrigant\.xyz\/.+">/);
+      expect(html).toMatch(/<link rel="canonical" href="https:\/\/irrigant\.xyz\/.*">/);
       expect(html).toMatch(/<meta name="description" content="[^"]+">/);
       expect(html).toContain("https://irrigant.xyz/assets/irrigant-social-card.png");
       expect(html).toContain('<meta name="twitter:card" content="summary_large_image">');

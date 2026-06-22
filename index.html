@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Irrigant — Every Drop Counts</title>
-  <meta name="description" content="Helios by Irrigant: machine-learning soil-moisture forecasting. Know when to water, and how much — days ahead.">
-  <meta property="og:title" content="Irrigant — Every Drop Counts">
-  <meta property="og:description" content="Machine-learning soil-moisture forecasting. Know when to water, and how much — days ahead.">
+  <title>Irrigation Scheduling &amp; Soil-Moisture Forecasting | Irrigant</title>
+  <meta name="description" content="Know when to water and how much to apply. Irrigant gives growers a clearer read on soil moisture, weather, and crop water needs.">
+  <link rel="canonical" href="https://irrigant.xyz/">
+  <meta property="og:title" content="Know when to water. And how much. | Irrigant">
+  <meta property="og:description" content="Clearer irrigation decisions, built for growers.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://irrigant.xyz/">
+  <meta property="og:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Know when to water. And how much. | Irrigant">
+  <meta name="twitter:description" content="Clearer irrigation decisions, built for growers.">
+  <meta name="twitter:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Irrigant","url":"https://irrigant.xyz/","logo":"https://irrigant.xyz/assets/logos/IrrigantLIGHT.png"},{"@type":"WebSite","name":"Irrigant","url":"https://irrigant.xyz/"}]}</script>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -199,6 +206,9 @@
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 48px; margin-top: clamp(52px, 8vh, 84px); }
     .feature h3 { font-size: 19px; letter-spacing: -0.03em; margin-bottom: 9px; }
     .feature p { font-size: 15px; line-height: 1.55; color: var(--body); max-width: 300px; }
+    .guide-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 52px; }
+    .guide-link { display: block; padding: 18px; border: 1px solid var(--hairline); border-radius: 12px; color: var(--ink); font-size: 14px; font-weight: 500; letter-spacing: -0.02em; text-decoration: none; transition: border-color .15s, transform .15s; }
+    .guide-link:hover { border-color: var(--ink); transform: translateY(-2px); }
     .viz { height: 56px; margin-bottom: 22px; }
     .viz svg { height: 100%; width: auto; display: block; overflow: visible; }
     .fc-track, .fc-line, .cf-track, .cf-arc { fill: none; }
@@ -263,10 +273,12 @@
 
     @media (max-width: 820px) {
       .features-grid { grid-template-columns: 1fr; }
+      .guide-links { grid-template-columns: 1fr 1fr; }
       .sci-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
       .chips { grid-template-columns: 1fr; }
+      .guide-links { grid-template-columns: 1fr; }
       .app-controls { flex-direction: column; }
       .sci-grid { grid-template-columns: 1fr; }
       .row2 { grid-template-columns: 1fr; }
@@ -284,7 +296,8 @@
     <div class="wrap">
       <span class="nav-brand"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></span>
       <div class="nav-right">
-        <a href="#science" class="nav-link hide-sm">The model</a>
+        <a href="irrigation-scheduling.html" class="nav-link hide-sm">Guides</a>
+        <a href="#science" class="nav-link hide-sm">How it works</a>
         <a href="#pricing" class="nav-link hide-sm">Pricing</a>
         <a href="#waitlist" class="btn btn-primary btn-sm">Join the waitlist</a>
       </div>
@@ -297,11 +310,11 @@
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
     <div class="wrap">
       <span class="badge"><span class="dot"></span> Now enrolling pilot farms</span>
-      <h1 class="h-hero">Every drop<br><span class="grad">counts.</span></h1>
-      <p class="lead">Machine-learning soil-moisture forecasting that tells you when to water — and how much. Days ahead.</p>
+      <h1 class="h-hero">Know when to water.<br><span class="grad">And how much.</span></h1>
+      <p class="lead">Irrigant gives growers a clearer read on soil moisture, weather, and crop water needs, so every irrigation decision starts with better information.</p>
       <div class="hero-actions">
         <a href="#waitlist" class="btn btn-primary">Join the waitlist <span class="arr">→</span></a>
-        <a href="#product" class="btn btn-secondary">See the model</a>
+        <a href="#product" class="btn btn-secondary">See how it works</a>
       </div>
     </div>
   </header>
@@ -327,7 +340,7 @@
           <div class="rec" id="rec">
             <div class="rec-badge" id="recBadge">WATER</div>
             <div class="rec-text" id="recText">Irrigate soon.</div>
-            <div class="rec-conf" id="recConf">confidence<br><b>—</b></div>
+            <div class="rec-conf" id="recConf">decision signal<br><b>—</b></div>
           </div>
 
           <div class="chips">
@@ -359,7 +372,7 @@
             <div id="driverList"></div>
           </div>
 
-          <div class="app-note">Illustrative preview — live data from OpenET, AgriMet &amp; NOAA at launch.</div>
+          <div class="app-note">Illustrative preview. Helios brings field conditions, weather, and crop water needs into one clear call.</div>
         </div>
       </div>
     </div>
@@ -383,8 +396,8 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">01 — Product</span>
-        <h2 class="h-lg">Machine learning for your crops.</h2>
-        <p class="lead">Not a black box. Not automation. Just better information, at the moment it matters.</p>
+        <h2 class="h-lg">Better calls for your crops.</h2>
+        <p class="lead">The right irrigation decision starts before the field forces it.</p>
       </div>
       <div class="features-grid">
         <div class="feature reveal">
@@ -407,8 +420,8 @@
               <circle class="cf-arc" cx="28" cy="28" r="22" stroke="url(#cfg)" stroke-width="5" transform="rotate(-90 28 28)"/>
             </svg>
           </div>
-          <h3>Every call, scored</h3>
-          <p>A confidence interval on every recommendation, plus the variables that drove it.</p>
+          <h3>Every call, explained</h3>
+          <p>See what is driving the recommendation before you make the next move.</p>
         </div>
         <div class="feature reveal">
           <div class="viz viz-wt">
@@ -425,6 +438,12 @@
           <p>The exact depth and the right window — not just whether to water.</p>
         </div>
       </div>
+      <div class="guide-links reveal" aria-label="Irrigation guides">
+        <a class="guide-link" href="irrigation-scheduling.html">Irrigation scheduling <span aria-hidden="true">→</span></a>
+        <a class="guide-link" href="soil-moisture-forecasting.html">Soil-moisture forecasting <span aria-hidden="true">→</span></a>
+        <a class="guide-link" href="how-helios-helps.html">How Helios helps <span aria-hidden="true">→</span></a>
+        <a class="guide-link" href="potato-irrigation-guide.html">Potato irrigation <span aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 
@@ -432,14 +451,14 @@
   <section class="block" id="science">
     <div class="wrap">
      <div class="dark-panel reveal">
-      <span class="eyebrow reveal">02 — The model</span>
-      <h2 class="h-lg reveal">Built to be inspected.</h2>
-      <p class="lead reveal">Every prediction traces back to the data and the variables that drove it.</p>
+      <span class="eyebrow reveal">02 — How it works</span>
+      <h2 class="h-lg reveal">Built for the decision.</h2>
+      <p class="lead reveal">Helios brings the conditions around your field into one clear irrigation call.</p>
       <div class="sci-grid">
-        <div class="sci reveal"><div class="v">72 hr</div><div class="k">Forecast horizon</div></div>
-        <div class="sci reveal"><div class="v">GBDT</div><div class="k">XGBoost + LightGBM</div></div>
-        <div class="sci reveal"><div class="v">4</div><div class="k">Data sources fused</div></div>
-        <div class="sci reveal"><div class="v">Water · Wait</div><div class="k">With confidence &amp; timing</div></div>
+        <div class="sci reveal"><div class="v">24–72 hr</div><div class="k">Decision window</div></div>
+        <div class="sci reveal"><div class="v">Field + forecast</div><div class="k">Conditions in view</div></div>
+        <div class="sci reveal"><div class="v">Water · Wait</div><div class="k">Clear next call</div></div>
+        <div class="sci reveal"><div class="v">Grower-led</div><div class="k">Your judgment stays in control</div></div>
       </div>
      </div>
     </div>
@@ -667,7 +686,7 @@
         rec.classList.add('wait'); badge.textContent='WAIT';
         text.innerHTML = 'Holds above the threshold. <b>No water needed</b> this window.';
       }
-      conf.innerHTML = 'confidence<br><b id="confNum">0%</b>'; countTo(document.getElementById('confNum'), r.conf);
+      conf.innerHTML = 'decision signal<br><b id="confNum">0%</b>'; countTo(document.getElementById('confNum'), r.conf);
       document.getElementById('chTemp').textContent = r.temp + '°F';
       document.getElementById('chRain').textContent = r.rain + ' mm';
       document.getElementById('chEt').textContent = r.etIn + ' in';
