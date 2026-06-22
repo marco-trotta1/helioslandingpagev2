@@ -49,4 +49,20 @@ describe("public SEO assets", () => {
     expect(copy).toContain("Join the waitlist");
     expect(copy).not.toMatch(/XGBoost|LightGBM|calibrated confidence|guaranteed water savings/i);
   });
+
+  test("gives each guide a unique grower question and a waitlist path", () => {
+    const expectations = {
+      "irrigation-scheduling.html": "How to make a better irrigation call",
+      "soil-moisture-forecasting.html": "See the trend before it becomes stress",
+      "how-helios-helps.html": "Better information before the water decision",
+      "potato-irrigation-guide.html": "Potato irrigation starts with the field, not the calendar",
+    };
+
+    for (const [page, heading] of Object.entries(expectations)) {
+      const html = read(page);
+      expect(html).toContain("<h1>" + heading + "</h1>");
+      expect(html).toContain('href="/#waitlist"');
+      expect(html).toContain('href="guides.css"');
+    }
+  });
 });
