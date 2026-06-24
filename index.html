@@ -101,28 +101,24 @@
     .btn:hover .arr { transform: translateX(2px); }
 
     /* hero */
-    .hero { position: relative; padding: 168px 0 var(--pad); overflow: hidden; }
-    .mesh { position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 1300px; max-width: 150vw; height: 640px; z-index: 0; pointer-events: none;
+    .hero { position: relative; padding: 168px 0 var(--pad); overflow: hidden;
       background:
-        radial-gradient(34% 50% at 18% 18%, rgba(0,124,240,0.50), transparent 70%),
-        radial-gradient(34% 48% at 44% 4%, rgba(0,223,216,0.42), transparent 70%),
-        radial-gradient(36% 52% at 72% 16%, rgba(52,211,153,0.40), transparent 70%),
-        radial-gradient(28% 44% at 92% 6%, rgba(249,203,40,0.34), transparent 70%);
-      filter: blur(46px) saturate(138%);
-      opacity: 0.85;
-      mask-image: radial-gradient(70% 80% at 50% 30%, #000 30%, transparent 78%);
-      -webkit-mask-image: radial-gradient(70% 80% at 50% 30%, #000 30%, transparent 78%);
-      animation: meshdrift 18s ease-in-out infinite;
-    }
-    @keyframes meshdrift { 0%{transform:translateX(-50%) scale(1);} 50%{transform:translateX(-51%) translateY(14px) scale(1.07);} 100%{transform:translateX(-50%) scale(1);} }
+        radial-gradient(58% 42% at 16% -6%, rgba(0,124,240,0.13), transparent 60%),
+        radial-gradient(56% 40% at 84% -6%, rgba(38,205,160,0.13), transparent 60%),
+        radial-gradient(48% 34% at 52% -10%, rgba(0,195,212,0.08), transparent 55%); }
     .hero-canvas { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
-    .grad { background: linear-gradient(110deg, #007cf0, #00c2b8 46%, #34d399); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    @media (prefers-reduced-motion: reduce) { .mesh { animation: none; } }
     .hero .wrap { position: relative; z-index: 1; text-align: center; }
     .hero .badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--body); background: var(--canvas); border: 1px solid var(--hairline); border-radius: 100px; padding: 6px 14px; margin-bottom: 30px; box-shadow: var(--shadow-2); }
     .hero .badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #2ecc71; }
-    .hero h1 { margin-bottom: 24px; }
-    .hero h1 .em { color: var(--link); }
+    .hero h1 { margin-bottom: 24px; opacity: 0; transform: translateY(20px); animation: htin 1s cubic-bezier(.2,.7,.2,1) .1s forwards; }
+    @keyframes htin { to { opacity: 1; transform: none; } }
+    .rotate { position: relative; display: inline-block; text-align: center; padding-bottom: 0.16em; vertical-align: top; transition: width .4s cubic-bezier(.2,.7,.2,1); }
+    .rotate .rw { display: inline-block; transition: opacity .3s ease, transform .3s ease; }
+    .rotate::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; border-radius: 6px;
+      background: linear-gradient(90deg, #00d4ff, #0078ff, #00b3a4, #25e0c4, #00d4ff); background-size: 220% 100%;
+      animation: waterflow 4.2s linear infinite; box-shadow: 0 0 22px rgba(0,150,255,0.5), 0 0 8px rgba(0,215,225,0.6); }
+    @keyframes waterflow { to { background-position: 220% 0; } }
+    @media (prefers-reduced-motion: reduce){ .hero h1 { animation: none; opacity: 1; transform: none; } .rotate::after { animation: none; } .rotate .rw { transition: none; } }
     .hero .lead { max-width: 560px; margin: 0 auto 36px; }
     .hero-actions { display: inline-flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
 
@@ -141,8 +137,7 @@
     .app-loc .dot { width: 6px; height: 6px; border-radius: 50%; background: #2ecc71; }
 
     .app-tabs { display: flex; gap: 6px; padding: 14px 18px 0; flex-wrap: wrap; }
-    .app-tab { font-family: var(--font); font-size: 13px; color: var(--app-mute); background: transparent; border: 1px solid var(--app-line); border-radius: 100px; padding: 6px 14px; cursor: pointer; transition: all .15s; letter-spacing: -0.01em; }
-    .app-tab:hover { color: var(--app-text); }
+    .app-tab { font-family: var(--font); font-size: 13px; color: var(--app-mute); background: transparent; border: 1px solid var(--app-line); border-radius: 100px; padding: 6px 14px; transition: all .35s; letter-spacing: -0.01em; }
     .app-tab.active { background: #fff; color: #111; border-color: #fff; font-weight: 500; }
 
     .app-body { padding: 16px 18px 20px; }
@@ -226,7 +221,7 @@
     @keyframes wtrise { 0%,100%{transform:scaleY(0.4);} 50%{transform:scaleY(0.88);} }
     @media (prefers-reduced-motion: reduce){ .fc-line,.fc-dot,.cf-arc,.wt-d,.wt-fill{ animation:none; } .fc-line{stroke-dashoffset:0;} .cf-arc{stroke-dashoffset:36;} .fc-dot{opacity:1;} }
 
-    /* dark band — the science */
+    /* dark band, the science */
     .dark-panel { position: relative; color: #fff; border-radius: 28px; padding: clamp(52px, 8vh, 92px) clamp(28px, 5vw, 72px); text-align: center; border: 1px solid transparent;
       background: linear-gradient(var(--ink), var(--ink)) padding-box, linear-gradient(135deg, rgba(0,124,240,0.9), rgba(0,223,216,0.68) 36%, rgba(52,211,153,0.62) 66%, rgba(249,203,40,0.78)) border-box;
       box-shadow: 0 24px 60px -34px rgba(0,0,0,0.35); }
@@ -310,12 +305,11 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="mesh"></div>
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
     <div class="wrap">
       <span class="badge"><span class="dot"></span> Now enrolling pilot farms</span>
-      <h1 class="h-hero">Know when to water.<br><span class="grad">And how much.</span></h1>
-      <p class="lead">Irrigant gives growers a clearer read on soil moisture, weather, and crop water needs, so every irrigation decision starts with better information.</p>
+      <h1 class="h-hero">Every Drop<br><span class="rotate"><span class="rw">Counts</span></span></h1>
+      <p class="lead">Irrigant uses machine learning to read soil moisture, weather, and crop demand, so every irrigation decision starts with a forecast, not a guess.</p>
       <div class="hero-actions">
         <a href="#waitlist" class="btn btn-primary">Join the waitlist <span class="arr">→</span></a>
         <a href="#product" class="btn btn-secondary">See how it works</a>
@@ -344,31 +338,13 @@
           <div class="rec" id="rec">
             <div class="rec-badge" id="recBadge">WATER</div>
             <div class="rec-text" id="recText">Irrigate soon.</div>
-            <div class="rec-conf" id="recConf">decision signal<br><b>—</b></div>
+            <div class="rec-conf" id="recConf">decision signal<br><b>0%</b></div>
           </div>
 
           <div class="chips">
-            <div class="chip"><div class="cv" id="chTemp">—</div><div class="ck">Forecast high · NOAA</div></div>
-            <div class="chip"><div class="cv" id="chRain">—</div><div class="ck">7-day rain · AgriMet</div></div>
-            <div class="chip"><div class="cv" id="chEt">—</div><div class="ck">Crop ET · OpenET</div></div>
-          </div>
-
-          <div class="app-controls">
-            <div class="ctl">
-              <div class="ctl-label">Soil type</div>
-              <div class="seg" id="soilSeg">
-                <button data-soil="sandy">Sandy</button>
-                <button data-soil="loam" class="active">Loam</button>
-                <button data-soil="clay">Clay</button>
-              </div>
-            </div>
-            <div class="ctl">
-              <div class="ctl-label">This week's forecast</div>
-              <div class="seg" id="scenSeg">
-                <button data-scen="dry" class="active">Hot &amp; dry</button>
-                <button data-scen="wet">Cool &amp; wet</button>
-              </div>
-            </div>
+            <div class="chip"><div class="cv" id="chTemp">·</div><div class="ck">Forecast high · NOAA</div></div>
+            <div class="chip"><div class="cv" id="chRain">·</div><div class="ck">7-day rain · AgriMet</div></div>
+            <div class="chip"><div class="cv" id="chEt">·</div><div class="ck">Crop ET · OpenET</div></div>
           </div>
 
           <div class="drivers">
@@ -399,7 +375,7 @@
   <section class="block" id="features">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">01 — Product</span>
+        <span class="eyebrow">01 · Product</span>
         <h2 class="h-lg">Better calls for your crops.</h2>
         <p class="lead">The right irrigation decision starts before the field forces it.</p>
       </div>
@@ -414,7 +390,7 @@
             </svg>
           </div>
           <h3>24–72 hours ahead</h3>
-          <p>Soil moisture, forecast before it happens — so you act on the curve, not the calendar.</p>
+          <p>Soil moisture, forecast before it happens, so you act on the curve, not the calendar.</p>
         </div>
         <div class="feature reveal">
           <div class="viz viz-cf">
@@ -439,7 +415,7 @@
             </svg>
           </div>
           <h3>How much, and when</h3>
-          <p>The exact depth and the right window — not just whether to water.</p>
+          <p>The exact depth and the right window, not just whether to water.</p>
         </div>
       </div>
       <div class="guide-links reveal" aria-label="Irrigation guides">
@@ -455,7 +431,7 @@
   <section class="block" id="science">
     <div class="wrap">
      <div class="dark-panel reveal">
-      <span class="eyebrow reveal">02 — How it works</span>
+      <span class="eyebrow reveal">02 · How it works</span>
       <h2 class="h-lg reveal">Built for the decision.</h2>
       <p class="lead reveal">Helios brings the conditions around your field into one clear irrigation call.</p>
       <div class="sci-grid">
@@ -472,7 +448,7 @@
   <section class="block" id="pricing">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">03 — Pricing</span>
+        <span class="eyebrow">03 · Pricing</span>
         <h2 class="h-lg">Simple, honest pricing.</h2>
       </div>
       <div class="price-card reveal">
@@ -493,7 +469,7 @@
   <section class="block" id="waitlist">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">04 — Early access</span>
+        <span class="eyebrow">04 · Early access</span>
         <h2 class="h-lg">Be first.</h2>
         <p class="lead">Free access at launch, and pricing locked in for good.</p>
       </div>
@@ -614,6 +590,26 @@
       });
     });
 
+    /* rotating headline word */
+    (function(){
+      var wrap = document.querySelector('.rotate'), rw = wrap && wrap.querySelector('.rw');
+      if(!rw) return;
+      var words = ['Counts','Measured','Predicted','Saved'], i = 0;
+      function setW(){ wrap.style.width = Math.ceil(rw.offsetWidth) + 'px'; }
+      setW(); window.addEventListener('resize', setW, { passive:true });
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+      setInterval(function(){
+        rw.style.opacity = '0'; rw.style.transform = 'translateY(-0.3em)';
+        setTimeout(function(){
+          i = (i + 1) % words.length; rw.textContent = words[i];
+          rw.style.transition = 'none'; rw.style.transform = 'translateY(0.3em)'; rw.offsetHeight;
+          setW();
+          rw.style.transition = ''; rw.style.opacity = '1'; rw.style.transform = 'translateY(0)';
+        }, 300);
+      }, 2800);
+    })();
+
     /* ---- Helios forecast model ---- */
     var CROPS = {
       potatoes:{label:'Potatoes',kc:1.05,thr:50}, sugarbeets:{label:'Sugar beets',kc:1.0,thr:45},
@@ -686,7 +682,7 @@
       rec.classList.remove('water','wait');
       if(r.verdict==='WATER'){
         rec.classList.add('water'); badge.textContent='WATER';
-        text.innerHTML = 'Irrigate <b>'+r.when+'</b> — apply about <span class="mono">'+r.depth.toFixed(1)+'"</span>.';
+        text.innerHTML = 'Irrigate <b>'+r.when+'</b>, apply about <span class="mono">'+r.depth.toFixed(1)+'"</span>.';
       } else {
         rec.classList.add('wait'); badge.textContent='WAIT';
         text.innerHTML = 'Holds above the threshold. <b>No water needed</b> this window.';
@@ -705,10 +701,24 @@
       });
     }
 
-    document.getElementById('cropTabs').addEventListener('click', function(e){ var b=e.target.closest('.app-tab'); if(!b) return; state.crop=b.getAttribute('data-crop'); this.querySelectorAll('.app-tab').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); render(); });
-    document.getElementById('soilSeg').addEventListener('click', function(e){ var b=e.target.closest('button'); if(!b) return; state.soil=b.getAttribute('data-soil'); this.querySelectorAll('button').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); render(); });
-    document.getElementById('scenSeg').addEventListener('click', function(e){ var b=e.target.closest('button'); if(!b) return; state.scen=b.getAttribute('data-scen'); this.querySelectorAll('button').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); render(); });
-    render();
+    /* self-playing demo: cycles fields automatically (non-interactive) */
+    var tabs = document.querySelectorAll('#cropTabs .app-tab');
+    var SEQ = [
+      { crop:'potatoes',   soil:'loam',  scen:'dry' },
+      { crop:'sugarbeets', soil:'clay',  scen:'wet' },
+      { crop:'alfalfa',    soil:'sandy', scen:'dry' },
+      { crop:'wheat',      soil:'clay',  scen:'wet' }
+    ];
+    var ci = 0;
+    function cycleCrop(){
+      var s = SEQ[ci];
+      state.crop = s.crop; state.soil = s.soil; state.scen = s.scen;
+      for(var b=0;b<tabs.length;b++){ tabs[b].classList.toggle('active', tabs[b].getAttribute('data-crop') === s.crop); }
+      render();
+      ci = (ci + 1) % SEQ.length;
+    }
+    cycleCrop();
+    setInterval(cycleCrop, 3800);
 
     var form = document.getElementById('waitlistForm'), submitBtn = document.getElementById('submitBtn'), success = document.getElementById('formSuccess');
     form.addEventListener('submit', function(e){
