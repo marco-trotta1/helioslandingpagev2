@@ -90,6 +90,18 @@
     .nav-link:hover { color: var(--ink); }
     @media (max-width: 640px) { .nav-link.hide-sm { display: none; } }
 
+    /* guides dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-toggle { display: flex; align-items: center; gap: 4px; cursor: pointer; background: none; border: none; padding: 0; font-family: var(--font); }
+    .nav-dropdown-toggle svg { transition: transform .2s; }
+    .nav-dropdown.open .nav-dropdown-toggle svg { transform: rotate(180deg); }
+    .nav-dropdown-menu { position: absolute; top: calc(100% + 12px); left: 50%; transform: translateX(-50%); background: #fff; border: 1px solid var(--hairline); border-radius: 12px; box-shadow: var(--shadow-3); padding: 6px; min-width: 220px; opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-6px); transition: opacity .18s, transform .18s; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .nav-dropdown-item { display: block; padding: 10px 14px; font-size: 14px; letter-spacing: -0.02em; color: var(--body); text-decoration: none; border-radius: 8px; transition: background .12s, color .12s; }
+    .nav-dropdown-item:hover { background: var(--canvas); color: var(--ink); }
+    .nav-dropdown-item strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
+    .nav-dropdown-item span { font-size: 12px; color: var(--muted); }
+
     /* buttons (pills) */
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); font-weight: 500; text-decoration: none; cursor: pointer; border-radius: 100px; transition: background .2s, color .2s, border-color .2s, transform .15s; white-space: nowrap; }
     .btn-primary { background: var(--ink); color: #fff; font-size: 16px; padding: 0 22px; height: 48px; border: 1px solid var(--ink); }
@@ -295,9 +307,30 @@
     <div class="wrap">
       <span class="nav-brand"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></span>
       <div class="nav-right">
-        <a href="irrigation-scheduling.html" class="nav-link hide-sm">Guides</a>
-        <a href="#science" class="nav-link hide-sm">How it works</a>
-        <a href="#pricing" class="nav-link hide-sm">Pricing</a>
+        <div class="nav-dropdown hide-sm" id="guidesDropdown">
+          <button class="nav-link nav-dropdown-toggle" onclick="toggleGuidesDropdown(event)">
+            Guides
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="irrigation-scheduling.html" class="nav-dropdown-item">
+              <strong>Irrigation Scheduling</strong>
+              <span>How Helios times your irrigation runs</span>
+            </a>
+            <a href="soil-moisture-forecasting.html" class="nav-dropdown-item">
+              <strong>Soil Moisture Forecasting</strong>
+              <span>Predicting field conditions 7 days out</span>
+            </a>
+            <a href="machine-learning.html" class="nav-dropdown-item">
+              <strong>Machine Learning</strong>
+              <span>The models behind the predictions</span>
+            </a>
+            <a href="how-helios-helps.html" class="nav-dropdown-item">
+              <strong>How Helios Helps</strong>
+              <span>Real-world impact for growers</span>
+            </a>
+          </div>
+        </div>
         <a href="#waitlist" class="btn btn-primary btn-sm">Join the waitlist</a>
       </div>
     </div>
@@ -516,6 +549,16 @@
     </div>
   </footer>
 
+  <script>
+  function toggleGuidesDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('guidesDropdown').classList.toggle('open');
+  }
+  document.addEventListener('click', function() {
+    var d = document.getElementById('guidesDropdown');
+    if (d) d.classList.remove('open');
+  });
+  </script>
   <script>
   (function(){
     'use strict';
