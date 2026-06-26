@@ -83,8 +83,8 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 64px; display: flex; align-items: center; transition: background .3s, border-color .3s, backdrop-filter .3s; border-bottom: 1px solid transparent; }
     nav.scrolled { background: rgba(250,250,250,0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: var(--hairline); }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-    .nav-brand img { height: 48px; width: auto; display: block; mix-blend-mode: multiply; }
-    .foot-brand img { height: 34px; width: auto; display: block; mix-blend-mode: multiply; }
+    .nav-brand img { height: 48px; width: auto; display: block; }
+    .foot-brand img { height: 34px; width: auto; display: block; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
     .nav-link { font-size: 14px; letter-spacing: -0.02em; color: var(--body); text-decoration: none; transition: color .15s; }
     .nav-link:hover { color: var(--ink); }
@@ -305,7 +305,7 @@
 
   <nav id="nav">
     <div class="wrap">
-      <span class="nav-brand"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></span>
+      <span class="nav-brand"><img src="assets/logos/IrrigantTRANSPARENT.png" alt="Irrigant"></span>
       <div class="nav-right">
         <div class="nav-dropdown hide-sm" id="guidesDropdown">
           <button class="nav-link nav-dropdown-toggle" onclick="toggleGuidesDropdown(event)">
@@ -543,7 +543,7 @@
 
   <footer>
     <div class="wrap">
-      <span class="foot-brand"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></span>
+      <span class="foot-brand"><img src="assets/logos/IrrigantTRANSPARENT.png" alt="Irrigant"></span>
       <span class="footer-text">© 2026 Irrigant</span>
       <a class="footer-link" href="privacy.html">Privacy</a>
     </div>
