@@ -17,29 +17,107 @@
   <meta name="twitter:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="guides.css">
 </head>
 <body>
-  <header class="nav"><div class="wrap"><a class="brand" href="/"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></a><a class="back" href="/">Back to Irrigant</a></div></header>
-  <main class="wrap">
-    <span class="eyebrow">Irrigant guide</span>
-    <h1>How to make a better irrigation call</h1>
-    <p class="lead">Irrigation scheduling is not about following a date on the calendar. It is about seeing what the field needs before the decision becomes urgent.</p>
-    <a class="cta" href="/#waitlist">Join the waitlist <span aria-hidden="true">→</span></a>
-    <div class="sections">
-    <section class="section"><h2>The decision is bigger than a date on the calendar</h2><p>A better call starts with what is happening in the field now, what weather is coming next, and how quickly your crop is using water. Put those signals together and the next move becomes easier to see.</p></section>
-    <section class="section"><h2>What to watch before you irrigate</h2><p>Start with soil moisture. Then look at the forecast, recent rainfall, and crop water demand. None of these tells the whole story alone. Together, they give you the context behind the next irrigation decision.</p></section>
-    <section class="section"><h2>Make the next call with more confidence</h2><p>Irrigant is built to bring the important conditions into one place, so you spend less time piecing together the picture and more time acting on it.</p></section>
+  <div id="progress"></div>
+
+  <nav class="site-nav" id="nav">
+    <div class="wrap">
+      <a class="nav-brand" href="/"><img src="assets/logos/IrrigantLIGHT.png" alt="Irrigant"></a>
+      <div class="nav-right">
+        <div class="nav-dropdown" id="guidesDropdown">
+          <button class="nav-link nav-dropdown-toggle" onclick="toggleGuidesDropdown(event)">
+            Guides
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="irrigation-scheduling.html" class="nav-dropdown-item current">
+              <strong>Irrigation Scheduling</strong>
+              <span>How Helios times your irrigation runs</span>
+            </a>
+            <a href="soil-moisture-forecasting.html" class="nav-dropdown-item">
+              <strong>Soil Moisture Forecasting</strong>
+              <span>Predicting field conditions 7 days out</span>
+            </a>
+            <a href="machine-learning.html" class="nav-dropdown-item">
+              <strong>Machine Learning</strong>
+              <span>The models behind the predictions</span>
+            </a>
+            <a href="how-helios-helps.html" class="nav-dropdown-item">
+              <strong>How Helios Helps</strong>
+              <span>Real-world impact for growers</span>
+            </a>
+          </div>
+        </div>
+        <a href="/#waitlist" class="btn btn-primary">Join the waitlist</a>
+      </div>
     </div>
-    <nav class="guide-nav" aria-label="Irrigant guides">
-      <strong>More guides</strong>
-      <a href="irrigation-scheduling.html">Irrigation scheduling</a>
-      <a href="soil-moisture-forecasting.html">Soil-moisture forecasting</a>
-      <a href="how-helios-helps.html">How Helios helps</a>
-      <a href="machine-learning.html">Machine learning</a>
-    </nav>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Irrigant guide</span>
+      <h1>How to make a better irrigation call</h1>
+      <p class="lead">Irrigation scheduling is not about following a date on the calendar. It is about seeing what the field needs before the decision becomes urgent.</p>
+      <a class="cta" href="/#waitlist">Join the waitlist <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="sections">
+        <section class="section">
+          <h2>The decision is bigger than a date on the calendar</h2>
+          <p>A better call starts with what is happening in the field now, what weather is coming next, and how quickly your crop is using water. Put those signals together and the next move becomes easier to see.</p>
+        </section>
+        <section class="section">
+          <h2>What to watch before you irrigate</h2>
+          <p>Start with soil moisture. Then look at the forecast, recent rainfall, and crop water demand. None of these tells the whole story alone. Together, they give you the context behind the next irrigation decision.</p>
+        </section>
+        <section class="section">
+          <h2>Make the next call with more confidence</h2>
+          <p>Irrigant is built to bring the important conditions into one place, so you spend less time piecing together the picture and more time acting on it.</p>
+        </section>
+      </div>
+      <nav class="guide-nav" aria-label="Irrigant guides">
+        <strong>More guides</strong>
+        <a href="irrigation-scheduling.html" class="current">Irrigation scheduling</a>
+        <a href="soil-moisture-forecasting.html">Soil-moisture forecasting</a>
+        <a href="how-helios-helps.html">How Helios helps</a>
+        <a href="machine-learning.html">Machine learning</a>
+      </nav>
+    </div>
   </main>
-  <footer class="footer"><div class="wrap"><span>© 2026 Irrigant</span><a href="privacy.html">Privacy</a></div></footer>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Irrigant</span>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+  function toggleGuidesDropdown(e) {
+    e.stopPropagation();
+    document.getElementById('guidesDropdown').classList.toggle('open');
+  }
+  document.addEventListener('click', function() {
+    var d = document.getElementById('guidesDropdown');
+    if (d) d.classList.remove('open');
+  });
+  (function() {
+    var nav = document.getElementById('nav');
+    var progress = document.getElementById('progress');
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset;
+      nav.classList.toggle('scrolled', y > 16);
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (docH > 0 ? (y / docH * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
 </body>
 </html>
