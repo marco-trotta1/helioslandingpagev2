@@ -241,16 +241,16 @@
     /* logo strip */
     .strip { padding: var(--pad) 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
     .strip .lab { text-align: center; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute); margin-bottom: 36px; }
-    .strip-row { display: grid; grid-template-columns: repeat(6, 1fr); align-items: center; gap: 34px 16px; }
+    .strip-row { display: grid; grid-template-columns: repeat(6, 1fr); align-items: center; gap: 40px 20px; }
     .strip-item { display: flex; align-items: center; justify-content: center; }
     /* fixed-height box so marks of different proportion sit on one optical baseline */
-    .strip-mark { height: 52px; display: flex; align-items: center; justify-content: center; }
-    .strip-mark img { display: block; width: auto; max-width: 100%; height: var(--lh, 30px); }
+    .strip-mark { height: 70px; display: flex; align-items: center; justify-content: center; }
+    .strip-mark img { display: block; width: auto; height: auto; max-height: var(--lh, 30px); max-width: 100%; }
     /* AgriMet publishes no downloadable logo file — styled wordmark in its brand colours */
-    .wm-agrimet { display: inline-flex; align-items: center; gap: 3px; font-size: 25px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+    .wm-agrimet { display: inline-flex; align-items: center; gap: 4px; font-size: 33px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
     .wm-agrimet .g { color: #4e8c2e; }
     .wm-agrimet .b { color: #2b8fc9; }
-    .wm-agrimet svg { width: 15px; height: 12px; color: #2b8fc9; align-self: flex-start; margin-top: 1px; }
+    .wm-agrimet svg { width: 20px; height: 16px; color: #2b8fc9; align-self: flex-start; margin-top: 1px; }
 
     /* sections */
     section.block { padding: var(--pad) 0; }
@@ -381,6 +381,9 @@
     }
     @media (max-width: 560px) {
       .strip-row { grid-template-columns: repeat(2, 1fr); }
+      .strip-mark { height: 58px; }
+      .wm-agrimet { font-size: 26px; gap: 3px; }
+      .wm-agrimet svg { width: 16px; height: 13px; }
       .guide-links { grid-template-columns: 1fr; }
       .sci-grid { grid-template-columns: 1fr; }
       .row2 { grid-template-columns: 1fr; }
@@ -498,7 +501,7 @@
               </span>
             </div>
 
-            <p class="ah-intro">An agronomist on call. Ask in plain words, and every answer is grounded in the same forecast behind this call, with its sources named.</p>
+            <p class="ah-intro">An agronomist on call. Ask in plain words, and every answer stays grounded in the forecast behind this recommendation, with its sources named.</p>
             <div class="ah-chips">
               <span>Why this depth?</span>
               <span>Can I wait a day?</span>
@@ -527,22 +530,22 @@
       <div class="lab reveal">Built on authoritative data and research</div>
       <div class="strip-row">
         <span class="strip-item reveal">
-          <span class="strip-mark"><img src="assets/logos/openet.svg" alt="OpenET" style="--lh:26px"></span>
+          <span class="strip-mark"><img src="assets/logos/openet.svg" alt="OpenET" style="--lh:34px"></span>
         </span>
         <span class="strip-item reveal">
           <span class="strip-mark"><span class="wm-agrimet"><svg viewBox="0 0 16 12" fill="none" aria-hidden="true"><path d="M1 8.2A3.8 3.8 0 0 1 4.8 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M1 4.6A7.4 7.4 0 0 1 8.4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M1 1A11 11 0 0 1 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="g">Agri</span><span class="b">Met</span></span></span>
         </span>
         <span class="strip-item reveal">
-          <span class="strip-mark"><img src="assets/logos/noaa.svg" alt="NOAA" style="--lh:44px"></span>
+          <span class="strip-mark"><img src="assets/logos/noaa.svg" alt="NOAA" style="--lh:58px"></span>
         </span>
         <span class="strip-item reveal">
-          <span class="strip-mark"><img src="assets/logos/nasa.svg" alt="NASA" style="--lh:44px"></span>
+          <span class="strip-mark"><img src="assets/logos/nasa.svg" alt="NASA" style="--lh:58px"></span>
         </span>
         <span class="strip-item reveal">
-          <span class="strip-mark"><img src="assets/logos/uidaho.svg" alt="University of Idaho" style="--lh:28px"></span>
+          <span class="strip-mark"><img src="assets/logos/uidaho.svg" alt="University of Idaho" style="--lh:37px"></span>
         </span>
         <span class="strip-item reveal">
-          <span class="strip-mark"><img src="assets/logos/stanford.svg" alt="Stanford University" style="--lh:44px"></span>
+          <span class="strip-mark"><img src="assets/logos/stanford.svg" alt="Stanford University" style="--lh:58px"></span>
         </span>
       </div>
     </div>
@@ -630,7 +633,7 @@
         <div class="ask-props">
           <div class="ask-prop">
             <h3><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="2.4" fill="currentColor"/></svg> Grounded in your call</h3>
-            <p>Every answer traces back to the same forecast behind your Water or Wait recommendation. Asking never quietly moves the decision.</p>
+            <p>Every answer traces back to the same forecast behind your Water or Wait recommendation. Asking a question never moves the decision.</p>
           </div>
           <div class="ask-prop">
             <h3><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 3h9l3.5 3.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M12.5 3v4h4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Cited, every time</h3>
@@ -968,19 +971,19 @@
     var SCENES = [
       { crop:'potatoes', soil:'loam', scen:'dry', field:'Pivot 4 · Potatoes',
         q:'Can I hold off on Pivot 4 until Thursday?',
-        a:'<b>Not without stress.</b> At today\'s crop ET the profile crosses your stress threshold inside the next <span class="mono">24 hr</span>, well before Thursday. Run tonight and apply the depth on the call.',
+        a:'<b>Not without stress.</b> At today\'s crop ET the profile crosses your stress threshold inside the next <span class="mono">24 hr</span>, well before Thursday. Run tonight, at the depth on the call.',
         cites:['Helios forecast','OpenET','NOAA'] },
       { crop:'sugarbeets', soil:'clay', scen:'wet', field:'Field 7 · Sugar beets',
         q:'We caught rain overnight. Do I still need to run?',
-        a:'<b>No.</b> The recorded rain plus what clay holds keeps you above threshold across the whole <span class="mono">72 hr</span> window. Hold, and check back Friday.',
+        a:'<b>No.</b> The recorded rain plus what your clay holds keeps you above threshold across the whole <span class="mono">72 hr</span> window. Hold, and check back Friday.',
         cites:['Helios forecast','AgriMet','U of Idaho'] },
       { crop:'alfalfa', soil:'sandy', scen:'dry', field:'Home place · Alfalfa',
         q:'Sandy ground here. Why so soon?',
-        a:'Sand holds roughly <b>a third less</b> water than the loam on your other fields, so the same crop ET pulls it down faster. That soil difference is the largest driver on this call.',
+        a:'Sand holds roughly <b>a quarter less</b> water than the loam on your other fields, so the same crop ET pulls it down faster. That soil difference is the largest driver on this call.',
         cites:['Helios forecast','SSURGO soils','OpenET'] },
       { crop:'wheat', soil:'clay', scen:'wet', field:'North 80 · Wheat',
         q:'How confident are you? I would rather skip a set.',
-        a:'The signal on this one is strong and the margin above threshold is wide. <b>Skipping the set is safe</b> this window. If the high moves up, Helios reopens the call.',
+        a:'The signal on this one is strong and the margin above threshold is wide. <b>Skipping the set is safe</b> in this window. If the high moves up, Helios reopens the call.',
         cites:['Helios forecast','NOAA'] }
     ];
 
@@ -1042,17 +1045,17 @@
       if(!qEl || !aEl || !bEl) return;
 
       var QA = [
-        { q: 'My neighbor is running every other day. Should I be?',
+        { q: 'My neighbor waters every other day. Should I match that?',
           a: 'Not on this ground. Your loam holds close to <b>a third more</b> water than the sand across the road, so the same crop ET takes longer to pull you down to threshold. On your current forecast the next set lands in <b>three days</b>, not two.',
           c: ['Helios forecast','OpenET','SSURGO soils','U of Idaho extension'] },
         { q: 'Rain is called for Thursday. Do I skip tonight?',
-          a: 'Hold off only if you can carry the risk. The forecast puts you below threshold <b>before</b> the front arrives, and rain that size lands mostly in the top few inches. Running a short set tonight keeps the root zone covered either way.',
+          a: '<b>Not worth the gamble.</b> The forecast puts you below threshold before the front arrives, and rain that size lands mostly in the top few inches. A short set tonight keeps the root zone covered either way.',
           c: ['Helios forecast','NOAA','AgriMet'] },
         { q: 'How much water am I losing past the roots?',
-          a: 'On your last four sets, roughly <b>one inch in five</b> drained below the root zone, most of it from the two longest runs in July. Shorter, better-timed sets recover the bulk of that.',
+          a: 'On your last four sets, roughly <b>one inch in five</b> drained below the root zone, most of it from the two longest runs in July. Shorter, better-timed sets would recover most of it.',
           c: ['Helios forecast','Field history','OpenET'] },
         { q: 'Why did the call change since this morning?',
-          a: 'The high moved up <b>six degrees</b> and crop ET rose with it, so the profile now crosses threshold about eight hours earlier than the overnight run had it. Nothing about your soil or crop stage changed.',
+          a: 'The high moved up <b>six degrees</b> and crop ET rose with it, so the profile now crosses threshold about eight hours earlier than the overnight run showed. Nothing about your soil or crop stage changed.',
           c: ['Helios forecast','NOAA'] }
       ];
 
