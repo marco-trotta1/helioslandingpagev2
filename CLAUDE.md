@@ -20,9 +20,24 @@ JetBrains Mono — keep it that way.
   scene's answer must stay consistent with the numbers its own scene produces.
   The thread clears when the field changes — never show an answer next to a
   different field's call.
+- Ask Helios is positioned as an **in-suite agronomist**, an ML forecast joined
+  to a language model over agronomy sources. Do not call it a chatbot or a bot
+  in copy.
+- The `#ask` section panel types a question, answers it, erases and retypes the
+  next one (`QA` array in `index.html`). Its answer area is never left blank:
+  it holds a `Listening` state while the question types and a `Reading your
+  field data` state before the answer lands. An empty panel reads as broken, so
+  keep a resting state if the timing changes. The loop only runs while the
+  panel is on screen.
+- **Section stitches** (`.stitch`) are the thin vertical rule and dot drawn
+  above each numbered section on `index.html` and `pricing.html`, and the
+  drawn rule plus marker on `.section` in `guides.css`. They exist to stop the
+  page reading as disconnected slabs. Keep them in sync when adding a section.
 - **Pricing carries no per-acre figure.** Both `index.html` and `pricing.html`
   say pricing is quoted per operation. Do not reintroduce a specific number
   (the old copy said ~$10/acre) without explicit approval.
+- The logo strip carries **no captions** under the marks, by request. Do not
+  reintroduce per-logo labels.
 - Data-source logos in `assets/logos/`: OpenET, NOAA, NASA, University of Idaho
   and Stanford are official files. `openet.svg` ships its wordmark white for
   dark backgrounds; ours is recoloured `#231f20` for the light page, and the

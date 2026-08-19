@@ -125,6 +125,17 @@
     .sec-head .eyebrow { display: block; margin-bottom: 18px; }
     .sec-head .lead { margin: 18px auto 0; max-width: 560px; }
 
+    /* section stitch: a thread drawn between sections so they read as one page */
+    .stitch { width: 1px; height: clamp(44px, 7vh, 72px); margin: calc(var(--pad) * -0.55) auto clamp(20px, 3vh, 32px);
+      background: linear-gradient(180deg, transparent, var(--hairline-2) 26%, var(--hairline-strong));
+      transform: scaleY(0); transform-origin: top; transition: transform .9s cubic-bezier(.2,.7,.2,1); position: relative; }
+    .stitch.in { transform: scaleY(1); }
+    .stitch::after { content: ''; position: absolute; left: 50%; bottom: -3.5px; width: 7px; height: 7px; margin-left: -3.5px;
+      border-radius: 50%; background: var(--canvas); border: 1px solid var(--hairline-strong);
+      opacity: 0; transform: scale(.4); transition: opacity .4s .55s, transform .4s .55s cubic-bezier(.2,.7,.2,1); }
+    .stitch.in::after { opacity: 1; transform: scale(1); }
+    @media (prefers-reduced-motion: reduce) { .stitch { transform: scaleY(1); transition: none; } .stitch::after { opacity: 1; transform: scale(1); transition: none; } }
+
     /* arbitrage */
     .arb { max-width: 900px; margin: 0 auto; }
     .arb-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: clamp(40px, 6vh, 64px); }
@@ -155,9 +166,9 @@
     .dark-panel .eyebrow { color: #8b929c; display: block; margin-bottom: 18px; }
     .dark-panel h2 { text-align: center; }
     .dark-panel .lead { color: #b6bcc4; text-align: center; margin: 18px auto 0; max-width: 560px; }
-    .speed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: clamp(44px, 7vh, 68px); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; text-align: left; }
-    .speed { background: var(--ink); padding: 32px 30px; }
-    .speed .v { font-family: var(--mono); font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.02em; color: #fff; }
+    .speed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: clamp(44px, 7vh, 68px); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; text-align: left; }
+    .speed { background: var(--ink); padding: 30px 26px; }
+    .speed .v { font-family: var(--mono); font-size: clamp(19px, 2.1vw, 24px); letter-spacing: -0.02em; color: #fff; line-height: 1.2; }
     .speed .k { font-size: 14px; color: #9aa1aa; margin-top: 12px; line-height: 1.5; }
 
     /* pricing card */
@@ -248,6 +259,7 @@
   <!-- THE COST YOU ALREADY CARRY -->
   <section class="block" id="cost">
     <div class="wrap">
+      <div class="stitch"></div>
       <div class="sec-head reveal">
         <span class="eyebrow">01 · The cost you already carry</span>
         <h2 class="h-lg">Start with the bill you already pay.</h2>
@@ -292,18 +304,23 @@
   <!-- SPEED -->
   <section class="block" id="speed">
     <div class="wrap">
+      <div class="stitch"></div>
       <div class="dark-panel reveal">
-        <span class="eyebrow reveal">02 · Speed</span>
-        <h2 class="h-lg reveal">Cheaper, and faster.</h2>
-        <p class="lead reveal">The savings only matter if the call comes in time. Helios is built to be early, and to answer the moment you ask.</p>
+        <span class="eyebrow reveal">02 · The case</span>
+        <h2 class="h-lg reveal">Cheap, fast, and smart.</h2>
+        <p class="lead reveal">The savings only matter if the call comes in time, and the call only matters if you can question it.</p>
         <div class="speed-grid">
+          <div class="speed reveal">
+            <div class="v">Under the loss</div>
+            <div class="k">Whatever your quote comes to, it stays below the water that already drains past your root zone each season. The saving covers the cost.</div>
+          </div>
           <div class="speed reveal">
             <div class="v">24 to 72 hr ahead</div>
             <div class="k">You see soil moisture before it drops, so you act on the forecast instead of reacting to a field that has already dried out.</div>
           </div>
           <div class="speed reveal">
-            <div class="v">Instant</div>
-            <div class="k">A crop consultant comes on their schedule. Helios gives a clear Water or Wait call the moment you open it, on any device.</div>
+            <div class="v">An agronomist on call</div>
+            <div class="k">A crop consultant comes on their schedule. Ask Helios answers the moment you ask, in plain words, with its sources named.</div>
           </div>
         </div>
       </div>
@@ -313,6 +330,7 @@
   <!-- WHAT YOU PAY -->
   <section class="block" id="pricing">
     <div class="wrap">
+      <div class="stitch"></div>
       <div class="sec-head reveal">
         <span class="eyebrow">03 · What you pay</span>
         <h2 class="h-lg">What it costs depends on your field.</h2>
@@ -337,6 +355,7 @@
   <!-- CLOSING CTA -->
   <section class="block close-cta" id="start">
     <div class="wrap">
+      <div class="stitch"></div>
       <div class="sec-head reveal">
         <span class="eyebrow">04 · Early access</span>
         <h2 class="h-lg">Start before next season.</h2>
@@ -395,6 +414,15 @@
       });
     }, { threshold: 0.16 });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+    /* draw the section stitches on scroll */
+    var stitchIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); stitchIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.35 });
+    document.querySelectorAll('.stitch').forEach(function(el){ stitchIO.observe(el); });
+
 
     /* count-up numbers */
     function fmt(n, prefix, suffix){ return (prefix||'') + Math.round(n).toLocaleString('en-US') + (suffix||''); }

@@ -159,8 +159,40 @@ main { padding-top: 24px; padding-bottom: 96px; }
 .section {
   padding: 40px 0;
   border-top: 1px solid var(--hairline-2);
+  position: relative;
 }
 .section:last-child { border-bottom: 1px solid var(--hairline-2); }
+
+/* threaded sections: the rule draws in and drops a marker as you scroll.
+   the .anim class is added by script, so without JS everything stays visible. */
+.section.anim { border-top-color: transparent; }
+.section.anim::before {
+  content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 1px;
+  background: var(--hairline-2);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .85s cubic-bezier(.2,.7,.2,1);
+}
+.section.anim::after {
+  content: ''; position: absolute; top: -4px; left: 0; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--canvas); border: 1px solid var(--hairline-strong);
+  opacity: 0; transform: scale(.4);
+  transition: opacity .4s .5s, transform .4s .5s cubic-bezier(.2,.7,.2,1);
+}
+.section.anim > * {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.section.anim.in::before { transform: scaleX(1); }
+.section.anim.in::after { opacity: 1; transform: scale(1); }
+.section.anim.in > * { opacity: 1; transform: none; }
+.section.anim.in > h2 { transition-delay: .10s; }
+.section.anim.in > p  { transition-delay: .18s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .section.anim { border-top-color: var(--hairline-2); }
+  .section.anim::before, .section.anim::after { display: none; }
+  .section.anim > * { opacity: 1; transform: none; transition: none; }
+}
 
 h2 {
   margin: 0 0 14px;
