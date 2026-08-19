@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.svg">
   <title>Pricing | Irrigant</title>
-  <meta name="description" content="You already pay to move every drop. Helios helps you keep more of it in the root zone, and pays for itself in a season. About ten dollars an acre.">
+  <meta name="description" content="You already pay to move every drop. Helios helps you keep more of it in the root zone, and pays for itself in a season. Contact us for pricing on your fields.">
   <link rel="canonical" href="https://irrigant.xyz/pricing.html">
   <meta property="og:title" content="It pays for itself in water | Irrigant">
   <meta property="og:description" content="Pumping is one of the biggest costs on an irrigated farm. Helios helps you keep more of what you pump in the root zone.">
@@ -163,8 +163,12 @@
     /* pricing card */
     .price-card { max-width: 420px; margin: clamp(40px,6vh,64px) auto 0; text-align: center; }
     .price-amt { font-size: clamp(48px, 8vw, 68px); font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+    .price-amt.quote { font-size: clamp(30px, 4.2vw, 40px); line-height: 1.08; letter-spacing: -0.038em; }
     .price-amt .per { font-size: 18px; color: var(--mute); font-weight: 400; letter-spacing: -0.01em; }
     .price-sub { font-size: 15px; color: var(--body); margin: 12px 0 24px; }
+    .price-contact { font-size: 13.5px; color: var(--mute); margin-top: 16px; line-height: 1.55; }
+    .price-contact a { color: var(--link); text-decoration: none; white-space: nowrap; }
+    .price-contact a:hover { text-decoration: underline; }
     .price-feats { list-style: none; text-align: left; margin-bottom: 28px; }
     .price-feats li { font-size: 14.5px; color: var(--body); padding: 9px 0; border-bottom: 1px solid var(--hairline); display: flex; gap: 10px; align-items: center; }
     .price-feats li:last-child { border-bottom: none; }
@@ -224,6 +228,7 @@
             </a>
           </div>
         </div>
+        <a href="index.html#ask" class="nav-link hide-sm">Ask Helios</a>
         <a href="pricing.html" class="nav-link" aria-current="page">Pricing</a>
         <a href="about.html" class="nav-link hide-sm">About</a>
         <a href="index.html#waitlist" class="btn btn-primary btn-sm">Join the waitlist</a>
@@ -275,7 +280,7 @@
           <div class="arb-col">
             <div class="arb-track"><div class="arb-bar b-helios" style="--h:15%"></div></div>
             <div class="arb-label">Helios</div>
-            <div class="arb-val">~$3,000/yr</div>
+            <div class="arb-val">Less than the loss</div>
           </div>
         </div>
 
@@ -310,19 +315,21 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">03 · What you pay</span>
-        <h2 class="h-lg">The whole thing costs about ten dollars an acre.</h2>
-        <p class="lead">Less than the water Helios helps you keep in the root zone. No contracts, no hardware to bury.</p>
+        <h2 class="h-lg">What it costs depends on your field.</h2>
+        <p class="lead">Acreage, crop mix, and how many fields you run all move the number, so we quote it rather than guess it. Whatever the figure, it stays under the water Helios helps you keep in the root zone. No contracts, no hardware to bury.</p>
       </div>
       <div class="price-card reveal">
-        <div class="price-amt">~$10<span class="per"> / acre</span></div>
-        <div class="price-sub">Per growing season. No contracts.</div>
+        <div class="price-amt quote">Priced to your operation</div>
+        <div class="price-sub">Tell us your acreage and what you grow, and we will send you an exact figure. Per growing season. No contracts.</div>
         <ul class="price-feats">
           <li><svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"/></svg> 24 to 72 hour soil-moisture forecasts</li>
           <li><svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"/></svg> Confidence-scored Water / Wait calls</li>
           <li><svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"/></svg> Dashboard on any device</li>
+          <li><svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"/></svg> Ask Helios, with cited answers</li>
           <li><svg width="17" height="17" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 011.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z"/></svg> Email &amp; chat support</li>
         </ul>
-        <a href="index.html#waitlist" class="btn btn-primary" style="width:100%;">Join the waitlist <span class="arr">→</span></a>
+        <a href="index.html#waitlist" class="btn btn-primary" style="width:100%;">Get pricing for your fields <span class="arr">→</span></a>
+        <p class="price-contact">Or reach us directly at <a href="mailto:marcotrotta909@gmail.com">marcotrotta909@gmail.com</a> or <a href="tel:+12089948295">(208) 994-8295</a>.</p>
       </div>
     </div>
   </section>
