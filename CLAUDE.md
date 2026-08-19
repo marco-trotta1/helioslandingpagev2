@@ -45,4 +45,10 @@ JetBrains Mono — keep it that way.
   downloadable logo, so it is a styled HTML wordmark (`.wm-agrimet`) in its
   brand colours — replace it with an `<img>` if an official file turns up.
 - Logo heights are tuned per mark via the inline `--lh` custom property so the
-  six sit on one optical baseline. Adjust `--lh`, not the box.
+  six sit on one optical baseline. Adjust `--lh`, not the box. The rule uses
+  `max-height` rather than `height`, so a narrow cell shrinks a mark instead of
+  letting it overflow. That only works if every logo file carries intrinsic
+  `width`/`height` attributes — `noaa.svg` shipped with a `viewBox` alone and
+  collapsed to 0x0 until they were added. Check any new file for them.
+- AgriMet is HTML text, so `max-width` cannot contain it. Its font-size steps
+  down under 560px; re-check it if the strip columns change.
