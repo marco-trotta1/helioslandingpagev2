@@ -103,6 +103,21 @@
   </footer>
 
   <script>
+  /* thread the guide sections: draw the rule and reveal content on scroll */
+  (function(){
+    var secs = document.querySelectorAll('.section');
+    if(!secs.length || !window.IntersectionObserver) return;
+    secs.forEach(function(el){ el.classList.add('anim'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    secs.forEach(function(el){ io.observe(el); });
+  })();
+  </script>
+
+  <script>
   function toggleGuidesDropdown(e) {
     e.stopPropagation();
     document.getElementById('guidesDropdown').classList.toggle('open');
