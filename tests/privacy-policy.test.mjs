@@ -19,7 +19,7 @@ test('states the policy scope and privacy request route', () => {
 
   assert.match(policy, /<title>Privacy Policy \| Irrigant<\/title>/);
   assert.match(policy, /Effective date: June 21, 2026/);
-  assert.match(policy, /first name, last name, email address, farm-size range, and location/i);
+  assert.match(policy, /first name, last name, email address, farm-size range, crop types, and location/i);
   assert.match(policy, /Formspree/i);
   assert.match(policy, /Google Fonts/i);
   assert.match(policy, /do not sell your personal information or share it for cross-context behavioral advertising/i);

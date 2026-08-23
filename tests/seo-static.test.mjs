@@ -15,10 +15,15 @@ describe("public SEO assets", () => {
   test("positions the homepage around irrigation decisions", () => {
     const html = read("index.html");
 
-    expect(html).toContain("Irrigation Scheduling &amp; Soil-Moisture Forecasting | Irrigant");
-    expect(html).toContain("Know when to water. And how much.");
+    expect(html).toContain("Irrigation Scheduling for Growers | Irrigant");
+    expect(html).toContain("Know when to water.<br>Know how much to apply.");
     expect(html).toContain('"@type":"Organization"');
     expect(html).toContain('"@type":"WebSite"');
+    expect(html).not.toContain('"@type":"SoftwareApplication"');
+    expect(html).not.toContain('"sameAs"');
+    expect(html).toContain('<meta property="og:site_name" content="Irrigant">');
+    expect(html).toContain('<meta property="og:image:alt" content="Irrigant Helios irrigation forecast preview">');
+    expect(html).not.toMatch(/\bexact\b|\bguaranteed\b|\bsafe\b|pays for itself/i);
     expect(html).toContain('href="irrigation-scheduling.html"');
   });
 
@@ -47,7 +52,28 @@ describe("public SEO assets", () => {
   test("keeps unsupported technical claims out of public copy", () => {
     const copy = pages.map(read).join("\n");
     expect(copy).toContain("Join the waitlist");
-    expect(copy).not.toMatch(/LightGBM|calibrated confidence|guaranteed water savings/i);
+    expect(copy).not.toMatch(/LightGBM|calibrated confidence|guaranteed water savings|pays for itself|skipping the set is safe|last four sets|one inch in five/i);
+  });
+
+  test("keeps the homepage honest and accessible", () => {
+    const html = read("index.html");
+
+    expect(html).toContain('<a class="skip-link" href="#main">Skip to content</a>');
+    expect(html).toContain('<main id="main">');
+    expect(html).toContain('aria-controls="guidesMenu"');
+    expect(html).toContain('aria-expanded="false"');
+    expect(html).toContain('<canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>');
+    expect(html).toContain("Illustrative preview using synthetic field data.");
+    expect(html).toContain("Illustrative preview. Ask Helios answers are shown in the scripted scene.");
+    expect(html).toContain("does not control irrigation");
+    expect(html).toContain('autocomplete="given-name"');
+    expect(html).toContain('autocomplete="family-name"');
+    expect(html).toContain('autocomplete="email"');
+    expect(html).toContain('autocomplete="address-level2"');
+    expect(html).toContain('Sensors and setup');
+    expect(html).toContain('aim to reply within two business days');
+    expect(html).toContain("var supportsReveal = 'IntersectionObserver' in window;");
+    expect(html).toContain('role="status"');
   });
 
   test("gives each guide a unique grower question and a waitlist path", () => {
