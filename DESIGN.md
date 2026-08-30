@@ -232,6 +232,13 @@ components:
     typography: "{typography.body-md}"
     rounded: "{rounded.md}"
     padding: "{spacing.lg}"
+  media-coverage-card:
+    backgroundColor: "{colors.canvas-soft}"
+    textColor: "{colors.ink}"
+    borderColor: "{colors.hairline}"
+    typography: "{typography.body-md}"
+    rounded: "{rounded.lg}"
+    padding: "{spacing.lg}"
   template-card:
     backgroundColor: "{colors.canvas}"
     textColor: "{colors.ink}"
