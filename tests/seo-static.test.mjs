@@ -15,7 +15,7 @@ describe("public SEO assets", () => {
   test("positions the homepage around irrigation decisions", () => {
     const html = read("index.html");
 
-    expect(html).toContain("Irrigation Scheduling for Growers | Irrigant");
+    expect(html).toContain("AI for Farms | Irrigant");
     expect(html).toContain("Know when to water.<br>Know how much to apply.");
     expect(html).toContain('"@type":"Organization"');
     expect(html).toContain('"@type":"WebSite"');
@@ -25,6 +25,14 @@ describe("public SEO assets", () => {
     expect(html).toContain('<meta property="og:image:alt" content="Irrigant Helios irrigation forecast preview">');
     expect(html).not.toMatch(/\bexact\b|\bguaranteed\b|\bsafe\b|pays for itself/i);
     expect(html).toContain('href="irrigation-scheduling.html"');
+  });
+
+  test("shows the active acreage on the homepage", () => {
+    const html = read("index.html");
+
+    expect(html).toContain('<section class="acreage" id="footprint" aria-labelledby="footprint-title">');
+    expect(html).toContain('<span class="acreage-number">7,000</span>');
+    expect(html).toContain("Helios is active across 7,000 acres.");
   });
 
   test("publishes crawler discovery for every public page", () => {
