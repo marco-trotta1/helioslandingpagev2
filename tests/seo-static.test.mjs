@@ -32,7 +32,8 @@ describe("public SEO assets", () => {
 
     expect(html).toContain('<section class="acreage" id="footprint" aria-labelledby="footprint-title">');
     expect(html).toContain('<span class="acreage-number">7,000</span>');
-    expect(html).toContain("Helios is active across 7,000 acres.");
+    expect(html).toContain('<a class="acreage-link" href="#waitlist">Be Next</a>');
+    expect(html).not.toContain("Helios is active across 7,000 acres.");
   });
 
   test("publishes crawler discovery for every public page", () => {
