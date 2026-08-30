@@ -100,6 +100,7 @@ describe("public SEO assets", () => {
     for (const [page, heading] of Object.entries(expectations)) {
       const html = read(page);
       expect(html).toContain("<h1>" + heading + "</h1>");
+      expect(html).toContain('href="/product.html#ask"');
       expect(html).toContain('href="/#quote"');
       expect(html).toContain("Request a quote");
       expect(html).not.toMatch(/waitlist/i);
@@ -110,6 +111,7 @@ describe("public SEO assets", () => {
   test("uses the quote request path on the About and Pricing pages", () => {
     for (const page of ["about.html", "pricing.html"]) {
       const html = read(page);
+      expect(html).toContain('href="product.html#ask"');
       expect(html).toContain('href="index.html#quote"');
       expect(html).toContain("Request a quote");
       expect(html).not.toMatch(/waitlist/i);
