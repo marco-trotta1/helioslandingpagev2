@@ -73,7 +73,7 @@ describe("public SEO assets", () => {
 
     expect(html).toContain('<a class="skip-link" href="#main">Skip to content</a>');
     expect(html).toContain('<main id="main">');
-    expect(html).toContain('aria-controls="guidesMenu"');
+    expect(html).toContain('aria-controls="resourcesMenu"');
     expect(html).toContain('aria-expanded="false"');
     expect(html).toContain('<canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>');
     expect(html).toContain("Illustrative preview using synthetic field data.");

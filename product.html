@@ -109,7 +109,7 @@
     .mobile-menu .mobile-guide { color: var(--mute); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; padding-bottom: 4px; }
     .mobile-menu .btn { color: #fff; margin-top: 8px; text-align: center; }
 
-    /* guides dropdown */
+    /* resources dropdown */
     .nav-dropdown { position: relative; }
     .nav-dropdown-toggle { display: flex; align-items: center; gap: 4px; cursor: pointer; background: none; border: none; padding: 0; font-family: var(--font); }
     .nav-dropdown-toggle svg { transition: transform .2s; }
@@ -120,6 +120,11 @@
     .nav-dropdown-item:hover { background: var(--canvas); color: var(--ink); }
     .nav-dropdown-item strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 2px; }
     .nav-dropdown-item span { font-size: 12px; color: var(--mute); }
+    .resources-menu { min-width: 500px; padding: 10px; grid-template-columns: 0.9fr 1.1fr; gap: 8px; }
+    .resources-menu:not([hidden]) { display: grid; }
+    .nav-dropdown-group { min-width: 0; padding: 3px; }
+    .nav-dropdown-group + .nav-dropdown-group { border-left: 1px solid var(--hairline); padding-left: 11px; }
+    .nav-dropdown-label { display: block; padding: 4px 10px 6px; font-family: var(--mono); font-size: 10px; color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; }
 
     /* buttons (pills) */
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); font-weight: 500; text-decoration: none; cursor: pointer; border-radius: 100px; transition: background .2s, color .2s, border-color .2s, transform .15s; white-space: nowrap; }
@@ -487,32 +492,44 @@
       <div class="nav-right">
         <div class="nav-desktop">
           <a href="product.html" class="nav-link" aria-current="page">Product</a>
-          <div class="nav-dropdown" id="guidesDropdown">
-            <button class="nav-link nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="guidesMenu" onclick="toggleGuidesDropdown(event)">
-            Guides
+          <div class="nav-dropdown" id="resourcesDropdown">
+            <button class="nav-link nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resourcesMenu" onclick="toggleResourcesDropdown(event)">
+            Resources
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div class="nav-dropdown-menu" id="guidesMenu" role="menu" hidden>
-              <a href="irrigation-scheduling.html" class="nav-dropdown-item" role="menuitem">
-                <strong>Irrigation Scheduling</strong>
-                <span>How Helios times your irrigation runs</span>
-              </a>
-              <a href="soil-moisture-forecasting.html" class="nav-dropdown-item" role="menuitem">
-                <strong>Soil Moisture Forecasting</strong>
-                <span>Predicting field conditions 7 days out</span>
-              </a>
-              <a href="machine-learning.html" class="nav-dropdown-item" role="menuitem">
-                <strong>Machine Learning</strong>
-                <span>The models behind the predictions</span>
-              </a>
-              <a href="how-helios-helps.html" class="nav-dropdown-item" role="menuitem">
-                <strong>How Helios Helps</strong>
-                <span>Real-world impact for growers</span>
-              </a>
+            <div class="nav-dropdown-menu resources-menu" id="resourcesMenu" role="menu" hidden>
+              <div class="nav-dropdown-group">
+                <span class="nav-dropdown-label">Explore</span>
+                <a href="#ask" class="nav-dropdown-item" role="menuitem">
+                  <strong>Ask Helios</strong>
+                  <span>Understand the call before you act</span>
+                </a>
+                <a href="index.html#media" class="nav-dropdown-item" role="menuitem">
+                  <strong>Media coverage</strong>
+                  <span>Read independent reporting on Irrigant</span>
+                </a>
+              </div>
+              <div class="nav-dropdown-group">
+                <span class="nav-dropdown-label">Guides</span>
+                <a href="irrigation-scheduling.html" class="nav-dropdown-item" role="menuitem">
+                  <strong>Irrigation Scheduling</strong>
+                  <span>Plan the next irrigation run</span>
+                </a>
+                <a href="soil-moisture-forecasting.html" class="nav-dropdown-item" role="menuitem">
+                  <strong>Soil Moisture Forecasting</strong>
+                  <span>See field conditions before they change</span>
+                </a>
+                <a href="how-helios-helps.html" class="nav-dropdown-item" role="menuitem">
+                  <strong>How Helios Helps</strong>
+                  <span>See the grower decision workflow</span>
+                </a>
+                <a href="machine-learning.html" class="nav-dropdown-item" role="menuitem">
+                  <strong>Machine Learning</strong>
+                  <span>Review the models behind Helios</span>
+                </a>
+              </div>
             </div>
           </div>
-          <a href="#ask" class="nav-link">Ask Helios</a>
-          <a href="index.html#media" class="nav-link">Media</a>
           <a href="pricing.html" class="nav-link">Pricing</a>
           <a href="about.html" class="nav-link">About</a>
         </div>
@@ -525,13 +542,14 @@
     <div class="mobile-menu" id="mobileMenu" hidden>
       <div class="mobile-menu-links">
         <a href="product.html" aria-current="page">Product</a>
+        <span class="mobile-guide">Resources</span>
+        <a href="#ask">Ask Helios</a>
+        <a href="index.html#media">Media coverage</a>
         <span class="mobile-guide">Guides</span>
         <a href="irrigation-scheduling.html">Irrigation scheduling</a>
         <a href="soil-moisture-forecasting.html">Soil-moisture forecasting</a>
-        <a href="machine-learning.html">Machine learning</a>
         <a href="how-helios-helps.html">How Helios helps</a>
-        <a href="#ask">Ask Helios</a>
-        <a href="index.html#media">Media</a>
+        <a href="machine-learning.html">Machine learning</a>
         <a href="pricing.html">Pricing</a>
         <a href="about.html">About</a>
         <a href="index.html#quote" class="btn btn-primary">Request a quote</a>
@@ -673,19 +691,19 @@
   </footer>
 
   <script>
-  function setGuidesDropdown(open) {
-    var dropdown = document.getElementById('guidesDropdown');
+  function setResourcesDropdown(open) {
+    var dropdown = document.getElementById('resourcesDropdown');
     var button = dropdown && dropdown.querySelector('.nav-dropdown-toggle');
-    var menu = document.getElementById('guidesMenu');
+    var menu = document.getElementById('resourcesMenu');
     if (!dropdown || !button || !menu) return;
     dropdown.classList.toggle('open', open);
     button.setAttribute('aria-expanded', String(open));
     menu.hidden = !open;
   }
-  function toggleGuidesDropdown(e) {
+  function toggleResourcesDropdown(e) {
     e.stopPropagation();
-    var dropdown = document.getElementById('guidesDropdown');
-    setGuidesDropdown(!dropdown.classList.contains('open'));
+    var dropdown = document.getElementById('resourcesDropdown');
+    setResourcesDropdown(!dropdown.classList.contains('open'));
   }
   function setMobileMenu(open) {
     var menu = document.getElementById('mobileMenu');
@@ -704,14 +722,14 @@
     link.addEventListener('click', function() { setMobileMenu(false); });
   });
   document.addEventListener('click', function(e) {
-    var dropdown = document.getElementById('guidesDropdown');
+    var dropdown = document.getElementById('resourcesDropdown');
     var nav = document.getElementById('nav');
-    if (dropdown && !dropdown.contains(e.target)) setGuidesDropdown(false);
+    if (dropdown && !dropdown.contains(e.target)) setResourcesDropdown(false);
     if (nav && !nav.contains(e.target)) setMobileMenu(false);
   });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      setGuidesDropdown(false);
+      setResourcesDropdown(false);
       setMobileMenu(false);
     }
   });
