@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 
 const pages = [
   "index.html",
+  "product.html",
   "irrigation-scheduling.html",
   "soil-moisture-forecasting.html",
   "how-helios-helps.html",
@@ -32,7 +33,7 @@ describe("public SEO assets", () => {
 
     expect(html).toContain('<section class="acreage" id="footprint" aria-labelledby="footprint-title">');
     expect(html).toContain('<span class="acreage-number">7,000</span>');
-    expect(html).toContain('<a class="acreage-link" href="#waitlist">Be Next</a>');
+    expect(html).toContain('<a class="acreage-link" href="#quote">Request a quote</a>');
     expect(html).not.toContain("Helios is active across 7,000 acres.");
   });
 
@@ -40,6 +41,7 @@ describe("public SEO assets", () => {
     expect(read("robots.txt")).toContain("Sitemap: https://irrigant.xyz/sitemap.xml");
     const sitemap = read("sitemap.xml");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/</loc>");
+    expect(sitemap).toContain("<loc>https://irrigant.xyz/product.html</loc>");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/irrigation-scheduling.html</loc>");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/soil-moisture-forecasting.html</loc>");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/how-helios-helps.html</loc>");
@@ -60,12 +62,14 @@ describe("public SEO assets", () => {
 
   test("keeps unsupported technical claims out of public copy", () => {
     const copy = pages.map(read).join("\n");
-    expect(copy).toContain("Join the waitlist");
+    expect(copy).toContain("Request a quote");
+    expect(copy).not.toContain("Join the waitlist");
     expect(copy).not.toMatch(/LightGBM|calibrated confidence|guaranteed water savings|pays for itself|skipping the set is safe|last four sets|one inch in five/i);
   });
 
   test("keeps the homepage honest and accessible", () => {
     const html = read("index.html");
+    const product = read("product.html");
 
     expect(html).toContain('<a class="skip-link" href="#main">Skip to content</a>');
     expect(html).toContain('<main id="main">');
@@ -79,13 +83,13 @@ describe("public SEO assets", () => {
     expect(html).toContain('autocomplete="family-name"');
     expect(html).toContain('autocomplete="email"');
     expect(html).toContain('autocomplete="address-level2"');
-    expect(html).toContain('Sensors and setup');
-    expect(html).toContain('aim to reply within two business days');
+    expect(product).toContain('Sensors and setup');
+    expect(product).toContain('aim to reply within two business days');
     expect(html).toContain("var supportsReveal = 'IntersectionObserver' in window;");
     expect(html).toContain('role="status"');
   });
 
-  test("gives each guide a unique grower question and a waitlist path", () => {
+  test("gives each guide a unique grower question and a quote request path", () => {
     const expectations = {
       "irrigation-scheduling.html": "How to make a better irrigation call",
       "soil-moisture-forecasting.html": "See the trend before it becomes stress",
@@ -96,8 +100,19 @@ describe("public SEO assets", () => {
     for (const [page, heading] of Object.entries(expectations)) {
       const html = read(page);
       expect(html).toContain("<h1>" + heading + "</h1>");
-      expect(html).toContain('href="/#waitlist"');
+      expect(html).toContain('href="/#quote"');
+      expect(html).toContain("Request a quote");
+      expect(html).not.toMatch(/waitlist/i);
       expect(html).toContain('href="guides.css"');
+    }
+  });
+
+  test("uses the quote request path on the About and Pricing pages", () => {
+    for (const page of ["about.html", "pricing.html"]) {
+      const html = read(page);
+      expect(html).toContain('href="index.html#quote"');
+      expect(html).toContain("Request a quote");
+      expect(html).not.toMatch(/waitlist/i);
     }
   });
 
