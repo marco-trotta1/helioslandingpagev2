@@ -12,16 +12,11 @@ JetBrains Mono — keep it that way.
 ## Notes
 - Waitlist posts to Formspree (`xojpodak`). Contact: marcotrotta909@gmail.com,
   henrylachtur@gmail.com, (208) 994-8295.
-- The hero product widget is an **illustrative** demo (synthetic model in
-  `index.html` script), labeled as such. It is not a live prediction — keep the
-  disclaimer if the logic changes.
+- The home-page product showcase is an **illustrative** tour. It uses synthetic
+  field data and four views: Run Analysis, Decision, Ask Helios, and History.
+  Keep the disclosure when the tour changes.
 - The home-page hero uses a deterministic center-pivot particle field. Keep the
   static reduced-motion state. Keep the particle count responsive to the viewport.
-- The widget has two panes: the forecast call on the left, an **Ask Helios**
-  scripted chat on the right. Both are driven by the same `SCENES` array, so a
-  scene's answer must stay consistent with the numbers its own scene produces.
-  The thread clears when the field changes — never show an answer next to a
-  different field's call.
 - Ask Helios is positioned as an **in-suite agronomist**, an ML forecast joined
   to a language model over agronomy sources. Do not call it a chatbot or a bot
   in copy.

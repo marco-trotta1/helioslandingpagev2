@@ -77,7 +77,7 @@ describe("public SEO assets", () => {
     expect(html).toContain('aria-expanded="false"');
     expect(html).toContain('<canvas class="hero-canvas" id="heroCanvas" aria-hidden="true"></canvas>');
     expect(html).toContain("Illustrative preview using synthetic field data.");
-    expect(html).toContain("Illustrative preview. Ask Helios answers are shown in the scripted scene.");
+    expect(html).toContain("See Helios in the field");
     expect(html).toContain("does not control irrigation");
     expect(html).toContain('autocomplete="given-name"');
     expect(html).toContain('autocomplete="family-name"');
