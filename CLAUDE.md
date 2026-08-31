@@ -15,6 +15,8 @@ JetBrains Mono — keep it that way.
 - The hero product widget is an **illustrative** demo (synthetic model in
   `index.html` script), labeled as such. It is not a live prediction — keep the
   disclaimer if the logic changes.
+- The home-page hero uses a deterministic center-pivot particle field. Keep the
+  static reduced-motion state. Keep the particle count responsive to the viewport.
 - The widget has two panes: the forecast call on the left, an **Ask Helios**
   scripted chat on the right. Both are driven by the same `SCENES` array, so a
   scene's answer must stay consistent with the numbers its own scene produces.

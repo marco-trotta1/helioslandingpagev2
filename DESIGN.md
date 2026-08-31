@@ -1,7 +1,7 @@
 ---
 version: alpha
-name: Vercel-Inspired-design-analysis
-description: An inspired interpretation of Vercel's design language — a developer-platform brand whose surface is a stark black-and-ink duet on near-white canvas, broken at hero scale by a multi-color mesh gradient (cyan / blue / magenta / amber) that acts as the entire decorative system, paired with a custom geometric sans for headlines and a monospaced caption face for technical labels.
+name: Irrigant-field-intelligence
+description: A restrained near-white product system led by a hydrology field hero. The hero uses an animated center-pivot field, water particles, terrain contours, and model nodes as its signature element.
 
 colors:
   primary: "#171717"
@@ -14,6 +14,11 @@ colors:
   canvas: "#ffffff"
   canvas-soft: "#fafafa"
   canvas-soft-2: "#f5f5f5"
+  hero-canvas: "#fafafa"
+  hero-haze: "#dcebf1"
+  hero-water: "#0054be"
+  hero-crop: "#1e6237"
+  hero-particle: "#222624"
   link: "#0070f3"
   link-deep: "#0761d1"
   link-bg-soft: "#d3e5ff"

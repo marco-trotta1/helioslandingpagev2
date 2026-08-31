@@ -17,7 +17,7 @@ describe("public SEO assets", () => {
     const html = read("index.html");
 
     expect(html).toContain("AI for Farms | Irrigant");
-    expect(html).toContain("Know when to water.<br>Know how much to apply.");
+    expect(html).toContain("Making Crops Think");
     expect(html).toContain('"@type":"Organization"');
     expect(html).toContain('"@type":"WebSite"');
     expect(html).not.toContain('"@type":"SoftwareApplication"');
