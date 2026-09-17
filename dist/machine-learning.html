@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg">
+  <title>Machine Learning for Irrigation Decisions | Irrigant</title>
+  <meta name="description" content="The technical architecture behind Helios, Irrigant's machine-learning irrigation decision-support system.">
+  <link rel="canonical" href="https://irrigant.xyz/machine-learning.html">
+  <meta property="og:title" content="Machine Learning for Irrigation Decisions | Irrigant">
+  <meta property="og:description" content="Technical architecture behind Helios.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://irrigant.xyz/machine-learning.html">
+  <meta property="og:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Machine Learning for Irrigation Decisions | Irrigant">
+  <meta name="twitter:description" content="Technical architecture behind Helios.">
+  <meta name="twitter:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="guides.css">
+</head>
+<body>
+  <div id="progress"></div>
+
+  <nav class="site-nav" id="nav">
+    <div class="wrap">
+      <a class="nav-brand" href="/"><img src="assets/logos/IrrigantTRANSPARENT.png" alt="Irrigant"></a>
+      <div class="nav-right">
+        <a href="/product.html" class="nav-link">Product</a>
+        <div class="nav-dropdown" id="resourcesDropdown">
+          <button class="nav-link nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resourcesMenu" onclick="toggleResourcesDropdown(event)">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu resources-menu" id="resourcesMenu" role="menu" hidden>
+            <div class="nav-dropdown-group">
+              <span class="nav-dropdown-label">Explore</span>
+              <a href="/product.html#ask" class="nav-dropdown-item" role="menuitem"><strong>Ask Helios</strong><span>Understand the call before you act</span></a>
+              <a href="/#media" class="nav-dropdown-item" role="menuitem"><strong>Media coverage</strong><span>Read independent reporting on Irrigant</span></a>
+            </div>
+            <div class="nav-dropdown-group">
+              <span class="nav-dropdown-label">Guides</span>
+              <a href="irrigation-scheduling.html" class="nav-dropdown-item" role="menuitem"><strong>Irrigation Scheduling</strong><span>Plan the next irrigation run</span></a>
+              <a href="soil-moisture-forecasting.html" class="nav-dropdown-item" role="menuitem"><strong>Soil Moisture Forecasting</strong><span>See field conditions before they change</span></a>
+              <a href="how-helios-helps.html" class="nav-dropdown-item" role="menuitem"><strong>How Helios Helps</strong><span>See the grower decision workflow</span></a>
+              <a href="machine-learning.html" class="nav-dropdown-item current" role="menuitem"><strong>Machine Learning</strong><span>Review the models behind Helios</span></a>
+            </div>
+          </div>
+        </div>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="/#quote" class="btn btn-primary">Request a quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Technical overview</span>
+      <h1>Machine learning for better irrigation decisions</h1>
+      <p class="lead">Helios combines field state, weather, crop-water demand, and operating constraints into a forward-looking irrigation recommendation.</p>
+      <a class="cta" href="/#quote">Request a quote <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="sections">
+        <section class="section">
+          <h2>System inputs</h2>
+          <p>The inference layer accepts soil-moisture readings, crop and growth-stage context, weather, irrigation-system details, operating constraints, and location inputs. These inputs form the system state behind each recommendation.</p>
+        </section>
+        <section class="section">
+          <h2>Forecasting layer</h2>
+          <p>Helios uses XGBoost multi-output regression to forecast volumetric soil moisture at 24, 48, and 72 hours. The model works across recent moisture levels and deltas, weather and ET signals, irrigation constraints, crop context, and seasonal features.</p>
+        </section>
+        <section class="section">
+          <h2>Runtime enrichment</h2>
+          <p>OpenET monthly ET enrichment adds crop-water-demand context when available. NOAA weather backfill fills missing weather inputs. Runtime results are cached by location and month, with a baked-in fallback path that keeps inference available when external enrichment is unavailable.</p>
+        </section>
+        <section class="section">
+          <h2>Decision layer</h2>
+          <p>A rule-based planning layer converts the forecast into irrigation timing and depth recommendations. It respects pump capacity, budget, infiltration, and water-window constraints instead of treating irrigation as an unconstrained prediction problem.</p>
+        </section>
+        <section class="section">
+          <h2>Product architecture</h2>
+          <p>The product combines a static frontend with a FastAPI backend. The API exposes prediction and nearby-feedback endpoints, while the feedback loop can surface comparable local operating context for future recommendations.</p>
+        </section>
+      </div>
+      <nav class="guide-nav" aria-label="Irrigant guides">
+        <strong>More guides</strong>
+        <a href="irrigation-scheduling.html">Irrigation scheduling</a>
+        <a href="soil-moisture-forecasting.html">Soil-moisture forecasting</a>
+        <a href="how-helios-helps.html">How Helios helps</a>
+        <a href="machine-learning.html" class="current">Machine learning</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Irrigant</span>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+  /* thread the guide sections: draw the rule and reveal content on scroll */
+  (function(){
+    var secs = document.querySelectorAll('.section');
+    if(!secs.length || !window.IntersectionObserver) return;
+    secs.forEach(function(el){ el.classList.add('anim'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    secs.forEach(function(el){ io.observe(el); });
+  })();
+  </script>
+
+  <script>
+  function setResourcesDropdown(open) {
+    var dropdown = document.getElementById('resourcesDropdown');
+    var button = dropdown && dropdown.querySelector('.nav-dropdown-toggle');
+    var menu = document.getElementById('resourcesMenu');
+    if (!dropdown || !button || !menu) return;
+    dropdown.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+  }
+  function toggleResourcesDropdown(e) {
+    e.stopPropagation();
+    var dropdown = document.getElementById('resourcesDropdown');
+    setResourcesDropdown(!dropdown.classList.contains('open'));
+  }
+  document.addEventListener('click', function() {
+    setResourcesDropdown(false);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') setResourcesDropdown(false);
+  });
+  (function() {
+    var nav = document.getElementById('nav');
+    var progress = document.getElementById('progress');
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset;
+      nav.classList.toggle('scrolled', y > 16);
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (docH > 0 ? (y / docH * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>
