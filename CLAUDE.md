@@ -17,6 +17,8 @@ JetBrains Mono — keep it that way.
   Keep the disclosure when the tour changes.
 - The home-page hero uses a deterministic center-pivot particle field. Keep the
   static reduced-motion state. Keep the particle count responsive to the viewport.
+- The home-page press section uses a continuous card ticker. Keep its pause,
+  hover-pause, keyboard-pause, and reduced-motion behavior.
 - Ask Helios is positioned as an **in-suite agronomist**, an ML forecast joined
   to a language model over agronomy sources. Do not call it a chatbot or a bot
   in copy.

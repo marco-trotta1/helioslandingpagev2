@@ -5,6 +5,11 @@ const html = readFileSync("index.html", "utf8");
 
 const coverage = [
   {
+    publisher: "KMVT",
+    title: "Artificially saving water: Meet the Boise teens using A.I. to make farming more efficient",
+    url: "https://www.kmvt.com/2026/09/18/artificially-saving-water-meet-boise-teens-using-ai-make-farming-more-efficient/",
+  },
+  {
     publisher: "Capital Press",
     title: "Western Innovator: High school students work on AI decision tool for irrigators",
     url: "https://capitalpress.com/2026/05/26/western-innovator-high-school-students-work-on-ai-decision-tool-for-irrigators/",
@@ -37,5 +42,12 @@ describe("homepage media coverage", () => {
   test("opens each external source safely", () => {
     expect(html.match(/class="media-card reveal"/g)?.length).toBe(coverage.length);
     expect(html.match(/target="_blank" rel="noopener noreferrer"/g)?.length).toBe(coverage.length);
+  });
+
+  test("provides ticker controls and a reduced-motion fallback", () => {
+    expect(html).toContain('data-media-ticker role="region"');
+    expect(html).toContain("data-media-toggle");
+    expect(html).toContain("mediaTicker");
+    expect(html).toContain("prefers-reduced-motion: reduce");
   });
 });

@@ -384,8 +384,30 @@
     .media-heading { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.65fr); gap: 48px; align-items: end; margin-bottom: clamp(44px, 7vh, 68px); }
     .media-heading .eyebrow { display: block; margin-bottom: 18px; }
     .media-heading .lead { max-width: 460px; margin-left: auto; }
-    .media-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; overflow: hidden; background: var(--hairline); border: 1px solid var(--hairline); border-radius: 18px; box-shadow: var(--shadow-2); }
-    .media-card { position: relative; display: flex; min-width: 0; min-height: 340px; padding: 28px; flex-direction: column; color: var(--ink); background: var(--canvas-soft); text-decoration: none; transition: background .2s; }
+    .media-ticker-toolbar { display: none; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+    .media-ticker.is-ready .media-ticker-toolbar { display: flex; }
+    .media-ticker-status { color: var(--mute); font-family: var(--mono); font-size: 11px; }
+    .media-ticker-button { min-height: 36px; padding: 0 12px; color: var(--ink); background: var(--canvas); border: 1px solid var(--hairline); border-radius: 8px; font: 500 13px var(--font); cursor: pointer; }
+    .media-ticker-button:hover, .media-ticker-button:focus-visible { border-color: var(--hairline-strong); }
+    .media-ticker-button:focus-visible { outline-offset: 2px; }
+    .media-window { overflow: hidden; mask-image: linear-gradient(to right, transparent, #000 3%, #000 97%, transparent); }
+    .media-track { display: block; }
+    .media-track-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .media-ticker.is-ready .media-track { display: flex; width: max-content; animation: mediaTicker var(--media-ticker-duration, 60s) linear infinite; animation-play-state: paused; will-change: transform; }
+    .media-ticker.is-ready.is-playing .media-track { animation-play-state: running; }
+    .media-ticker.is-ready.is-paused .media-track { display: block; width: auto; animation: none; will-change: auto; }
+    .media-ticker.is-ready .media-track-group { display: flex; flex: none; align-items: stretch; gap: 16px; padding-right: 16px; }
+    .media-ticker.is-ready.is-paused .media-track-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-right: 0; }
+    .media-ticker.is-ready.is-paused .media-track-group[aria-hidden="true"] { display: none; }
+    .media-ticker.is-ready .media-card { flex: 0 0 clamp(300px, 28vw, 340px); }
+    .media-ticker.is-ready .media-track-group[aria-hidden="true"] { pointer-events: none; }
+    @keyframes mediaTicker { to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .media-ticker.is-ready:not(.is-motion-override) .media-track { display: block; width: auto; animation: none; will-change: auto; }
+      .media-ticker.is-ready:not(.is-motion-override) .media-track-group { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding-right: 0; }
+      .media-ticker.is-ready:not(.is-motion-override) .media-track-group[aria-hidden="true"] { display: none; }
+    }
+    .media-card { position: relative; display: flex; min-width: 0; min-height: 340px; padding: 28px; flex-direction: column; color: var(--ink); background: var(--canvas-soft); border: 1px solid var(--hairline); border-radius: 18px; text-decoration: none; transition: background .2s; }
     .media-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, #007cf0, #00dfd8); transform: scaleX(0); transform-origin: left; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
     .media-card:hover, .media-card:focus-visible { background: var(--canvas); }
     .media-card:hover::before, .media-card:focus-visible::before { transform: scaleX(1); }
@@ -540,13 +562,18 @@
       .acreage-field { min-height: 240px; border-top: 1px solid var(--hairline); border-left: 0; }
       .media-heading { grid-template-columns: 1fr; gap: 20px; }
       .media-heading .lead { margin-left: 0; }
-      .media-grid { grid-template-columns: 1fr; }
+      .media-track-group { grid-template-columns: 1fr; }
+      .media-ticker.is-ready.is-paused .media-track-group { grid-template-columns: 1fr; }
+      .media-ticker.is-ready .media-card { flex-basis: min(82vw, 340px); }
       .media-card { min-height: 0; }
       .media-card-top { margin-bottom: 36px; }
       .features-grid { grid-template-columns: 1fr; }
       .guide-links { grid-template-columns: 1fr 1fr; }
       .sci-grid { grid-template-columns: 1fr 1fr; }
       .setup-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) and (prefers-reduced-motion: reduce) {
+      .media-ticker.is-ready:not(.is-motion-override) .media-track-group { grid-template-columns: 1fr; }
     }
     @media (max-width: 880px) {
       .hp-window { grid-template-columns: 1fr; min-height: 690px; }
@@ -910,39 +937,45 @@
         <p class="lead reveal">Reporting and interviews about Helios, its field work, and the people building it.</p>
       </div>
 
-      <div class="media-grid">
-        <a class="media-card reveal" href="https://www.agproud.com/articles/63775-putting-ai-in-agriculture" target="_blank" rel="noopener noreferrer" aria-label="Read Putting AI in agriculture on Ag Proud in a new tab">
-          <div class="media-card-top">
-            <span class="media-publisher">Ag Proud</span>
-            <span class="media-format">Agriculture feature</span>
+      <div class="media-ticker" data-media-ticker role="region" aria-label="Press coverage">
+        <div class="media-ticker-toolbar">
+          <span class="media-ticker-status">Press coverage</span>
+          <button class="media-ticker-button" data-media-toggle type="button" aria-label="Automatic press coverage rotation" aria-pressed="true">Pause</button>
+        </div>
+        <div class="media-window" data-media-window>
+          <div class="media-track" data-media-track>
+            <div class="media-track-group" data-media-group>
+              <a class="media-card reveal" href="https://www.kmvt.com/2026/09/18/artificially-saving-water-meet-boise-teens-using-ai-make-farming-more-efficient/" target="_blank" rel="noopener noreferrer" aria-label="Read Artificially saving water on KMVT in a new tab">
+                <div class="media-card-top"><span class="media-publisher">KMVT</span><span class="media-format">Local news</span></div>
+                <time datetime="2026-09-18">September 18, 2026</time>
+                <h3>Artificially saving water: Meet the Boise teens using A.I. to make farming more efficient</h3>
+                <p>KMVT profiles Irrigant’s founders and their work to support more efficient irrigation in Idaho.</p>
+                <span class="media-link">Read the story <span aria-hidden="true">↗</span></span>
+              </a>
+              <a class="media-card reveal" href="https://www.agproud.com/articles/63775-putting-ai-in-agriculture" target="_blank" rel="noopener noreferrer" aria-label="Read Putting AI in agriculture on Ag Proud in a new tab">
+                <div class="media-card-top"><span class="media-publisher">Ag Proud</span><span class="media-format">Agriculture feature</span></div>
+                <time datetime="2026-07-17">July 17, 2026</time>
+                <h3>Putting AI in agriculture</h3>
+                <p>Ag Proud examines how Irrigant uses farm, weather, and soil data to support irrigation decisions.</p>
+                <span class="media-link">Read the feature <span aria-hidden="true">↗</span></span>
+              </a>
+              <a class="media-card reveal" href="https://capitalpress.com/2026/05/26/western-innovator-high-school-students-work-on-ai-decision-tool-for-irrigators/" target="_blank" rel="noopener noreferrer" aria-label="Read the Western Innovator feature on Capital Press in a new tab">
+                <div class="media-card-top"><span class="media-publisher">Capital Press</span><span class="media-format">Western Innovator</span></div>
+                <time datetime="2026-05-26">May 26, 2026</time>
+                <h3>Western Innovator: High school students work on AI decision tool for irrigators</h3>
+                <p>Capital Press profiles the founders and their work on an AI decision tool for irrigators.</p>
+                <span class="media-link">Read the feature <span aria-hidden="true">↗</span></span>
+              </a>
+              <a class="media-card reveal" href="https://www.boisestatepublicradio.org/show/idaho-matters/2026-05-06/idaho-teens-build-ai-tool-farmers-save-water" target="_blank" rel="noopener noreferrer" aria-label="Listen to the Idaho Matters interview on Boise State Public Radio in a new tab">
+                <div class="media-card-top"><span class="media-publisher">Boise State Public Radio</span><span class="media-format">Radio interview</span></div>
+                <time datetime="2026-05-06">May 6, 2026</time>
+                <h3>Idaho teens build AI tool to help farmers save water and grow smarter</h3>
+                <p>Idaho Matters talks with both founders about Helios, water use, and field testing in Idaho.</p>
+                <span class="media-link">Listen to the interview <span aria-hidden="true">↗</span></span>
+              </a>
+            </div>
           </div>
-          <time datetime="2026-07-17">July 17, 2026</time>
-          <h3>Putting AI in agriculture</h3>
-          <p>Ag Proud examines how Irrigant uses farm, weather, and soil data to support irrigation decisions.</p>
-          <span class="media-link">Read the feature <span aria-hidden="true">↗</span></span>
-        </a>
-
-        <a class="media-card reveal" href="https://capitalpress.com/2026/05/26/western-innovator-high-school-students-work-on-ai-decision-tool-for-irrigators/" target="_blank" rel="noopener noreferrer" aria-label="Read the Western Innovator feature on Capital Press in a new tab">
-          <div class="media-card-top">
-            <span class="media-publisher">Capital Press</span>
-            <span class="media-format">Western Innovator</span>
-          </div>
-          <time datetime="2026-05-26">May 26, 2026</time>
-          <h3>Western Innovator: High school students work on AI decision tool for irrigators</h3>
-          <p>Capital Press profiles the founders and their work on an AI decision tool for irrigators.</p>
-          <span class="media-link">Read the feature <span aria-hidden="true">↗</span></span>
-        </a>
-
-        <a class="media-card reveal" href="https://www.boisestatepublicradio.org/show/idaho-matters/2026-05-06/idaho-teens-build-ai-tool-farmers-save-water" target="_blank" rel="noopener noreferrer" aria-label="Listen to the Idaho Matters interview on Boise State Public Radio in a new tab">
-          <div class="media-card-top">
-            <span class="media-publisher">Boise State Public Radio</span>
-            <span class="media-format">Radio interview</span>
-          </div>
-          <time datetime="2026-05-06">May 6, 2026</time>
-          <h3>Idaho teens build AI tool to help farmers save water and grow smarter</h3>
-          <p>Idaho Matters talks with both founders about Helios, water use, and field testing in Idaho.</p>
-          <span class="media-link">Listen to the interview <span aria-hidden="true">↗</span></span>
-        </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1470,6 +1503,79 @@
         .then(function(res){ if(res.ok){ form.style.display='none'; success.classList.add('show'); success.focus(); } else throw new Error('x'); })
         .catch(function(){ submitBtn.disabled=false; submitBtn.textContent='Request a quote'; alert('We could not send your quote request. Please try again or email us directly.'); });
     });
+  })();
+  </script>
+  <script>
+  (function(){
+    'use strict';
+    var ticker = document.querySelector('[data-media-ticker]');
+    if(!ticker) return;
+    var track = ticker.querySelector('[data-media-track]');
+    var windowElement = ticker.querySelector('[data-media-window]');
+    var group = ticker.querySelector('[data-media-group]');
+    var toggle = ticker.querySelector('[data-media-toggle]');
+    if(!track || !windowElement || !group || !toggle || !group.children.length) return;
+
+    var motionPreference = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+    var userPaused = !!(motionPreference && motionPreference.matches);
+    var pointerInside = false;
+    var cardHasFocus = false;
+    var repeatedGroup = group.cloneNode(true);
+    repeatedGroup.removeAttribute('data-media-group');
+    repeatedGroup.setAttribute('aria-hidden', 'true');
+    repeatedGroup.inert = true;
+    repeatedGroup.querySelectorAll('.reveal').forEach(function(element){
+      element.classList.remove('reveal');
+      element.classList.add('in');
+      element.style.transitionDelay = '';
+    });
+    track.appendChild(repeatedGroup);
+
+    function setSpeed(){
+      var distance = group.getBoundingClientRect().width;
+      if(distance > 0) track.style.setProperty('--media-ticker-duration', (distance / 28) + 's');
+    }
+
+    function isPlaying(){
+      return !userPaused && !pointerInside && !cardHasFocus && !document.hidden;
+    }
+
+    function syncPlayback(){
+      var playing = isPlaying();
+      toggle.textContent = playing ? 'Pause' : 'Resume';
+      toggle.setAttribute('aria-pressed', String(playing));
+      ticker.classList.toggle('is-paused', userPaused);
+      ticker.classList.toggle('is-motion-override', !!(motionPreference && motionPreference.matches && !userPaused));
+      ticker.classList.toggle('is-playing', playing);
+    }
+
+    toggle.addEventListener('click', function(){
+      userPaused = !userPaused;
+      syncPlayback();
+    });
+    windowElement.addEventListener('pointerenter', function(){ pointerInside = true; syncPlayback(); });
+    windowElement.addEventListener('pointerleave', function(){ pointerInside = false; syncPlayback(); });
+    group.addEventListener('focusin', function(){ cardHasFocus = true; syncPlayback(); });
+    group.addEventListener('focusout', function(event){
+      if(!group.contains(event.relatedTarget)){ cardHasFocus = false; syncPlayback(); }
+    });
+    document.addEventListener('visibilitychange', syncPlayback);
+    if(motionPreference && motionPreference.addEventListener){
+      motionPreference.addEventListener('change', function(event){
+        if(event.matches) userPaused = true;
+        syncPlayback();
+      });
+    }
+
+    ticker.classList.add('is-ready');
+    setSpeed();
+    if(window.ResizeObserver){
+      var resizeObserver = new ResizeObserver(setSpeed);
+      resizeObserver.observe(group);
+    } else {
+      window.addEventListener('resize', setSpeed, { passive:true });
+    }
+    syncPlayback();
   })();
   </script>
 </body>
