@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.svg">
+  <title>Research | Irrigant</title>
+  <meta name="description" content="Research from Irrigant on when a model should change an estimate, and what that means for Helios.">
+  <link rel="canonical" href="https://irrigant.xyz/research.html">
+  <meta property="og:title" content="Research | Irrigant">
+  <meta property="og:description" content="Research from Irrigant on careful model corrections and the connection to Helios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://irrigant.xyz/research.html">
+  <meta property="og:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Research | Irrigant">
+  <meta name="twitter:description" content="Research from Irrigant on careful model corrections and the connection to Helios.">
+  <meta name="twitter:image" content="https://irrigant.xyz/assets/irrigant-social-card.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="guides.css">
+  <style>
+    .research-list { list-style: none; }
+    .research-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, .55fr); align-items: center; gap: 36px; padding: 28px 0; border-bottom: 1px solid var(--hairline-2); }
+    .research-item:first-child { padding-top: 0; }
+    .research-meta { margin-bottom: 12px; color: var(--muted); font: 12px/1.5 var(--mono); }
+    .research-title { max-width: 700px; margin-bottom: 12px; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.15; letter-spacing: -.035em; font-weight: 600; }
+    .research-summary { max-width: 680px; margin-bottom: 18px; color: var(--body); font-size: 16px; line-height: 1.6; }
+    .research-link { display: inline-flex; align-items: center; gap: 7px; color: var(--link-deep); font-size: 14px; font-weight: 500; text-decoration: none; }
+    .research-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .research-graphic { padding: 14px; border: 1px solid var(--hairline-2); border-radius: 12px; background: var(--canvas); }
+    .research-graphic svg { display: block; width: 100%; height: auto; }
+    .research-graphic figcaption { margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.4; }
+    @media (max-width: 640px) {
+      .research-item { grid-template-columns: 1fr; gap: 22px; }
+      .research-graphic { max-width: 340px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="progress"></div>
+
+  <nav class="site-nav" id="nav">
+    <div class="wrap">
+      <a class="nav-brand" href="/"><img src="assets/logos/IrrigantTRANSPARENT.png" alt="Irrigant"></a>
+      <div class="nav-right">
+        <a href="/product.html" class="nav-link">Product</a>
+        <div class="nav-dropdown" id="resourcesDropdown">
+          <button class="nav-link nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resourcesMenu" onclick="toggleResourcesDropdown(event)">
+            Resources
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-dropdown-menu resources-menu" id="resourcesMenu" role="menu" hidden>
+            <div class="nav-dropdown-group">
+              <span class="nav-dropdown-label">Explore</span>
+              <a href="/product.html#ask" class="nav-dropdown-item" role="menuitem"><strong>Ask Helios</strong><span>Understand the call before you act</span></a>
+              <a href="/#media" class="nav-dropdown-item" role="menuitem"><strong>Media coverage</strong><span>Read independent reporting on Irrigant</span></a>
+              <a href="research.html" class="nav-dropdown-item current" role="menuitem" aria-current="page"><strong>Research</strong><span>Read research from Irrigant</span></a>
+            </div>
+            <div class="nav-dropdown-group">
+              <span class="nav-dropdown-label">Guides</span>
+              <a href="irrigation-scheduling.html" class="nav-dropdown-item" role="menuitem"><strong>Irrigation Scheduling</strong><span>Plan the next irrigation run</span></a>
+              <a href="soil-moisture-forecasting.html" class="nav-dropdown-item" role="menuitem"><strong>Soil Moisture Forecasting</strong><span>See field conditions before they change</span></a>
+              <a href="how-helios-helps.html" class="nav-dropdown-item" role="menuitem"><strong>How Helios Helps</strong><span>See the grower decision workflow</span></a>
+              <a href="machine-learning.html" class="nav-dropdown-item" role="menuitem"><strong>Machine Learning</strong><span>Review the models behind Helios</span></a>
+            </div>
+          </div>
+        </div>
+        <a href="/pricing.html" class="nav-link">Pricing</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/#quote" class="btn btn-primary">Request a quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Irrigant research</span>
+      <h1>When should a model change an estimate?</h1>
+      <p class="lead">Research on when a model correction should be used, and when the original estimate should stay.</p>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+      <div class="sections">
+        <section class="section" aria-labelledby="research-title">
+          <h2 id="research-title">Published research</h2>
+          <ol class="research-list">
+            <li class="research-item">
+              <article>
+                <p class="research-meta">Preprint · Marco Trotta · arXiv:2609.35314</p>
+                <h3 class="research-title">When Should a Satellite Estimate Be Changed? Stress-Testing Neural Corrections for Evapotranspiration</h3>
+                <p class="research-summary">Satellite estimates can help explain water use. A model can adjust those estimates, but an adjustment can also add error. This paper studies how to check for evidence before using a change.</p>
+                <a class="research-link" href="https://arxiv.org/abs/2609.35314" target="_blank" rel="noopener noreferrer">Read the preprint <span aria-hidden="true">↗</span></a>
+              </article>
+              <figure class="research-graphic">
+                <svg viewBox="0 0 360 110" role="img" aria-labelledby="research-graphic-title research-graphic-desc">
+                  <title id="research-graphic-title">The question studied in the paper</title>
+                  <desc id="research-graphic-desc">An existing estimate leads to a possible correction, which is checked against evidence.</desc>
+                  <path d="M91 45h28m112 0h28" stroke="#a1a1a1" stroke-width="1.5"/>
+                  <path d="m112 41 7 4-7 4m112-8 7 4-7 4" fill="none" stroke="#a1a1a1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="8" y="15" width="82" height="60" rx="7" fill="#fafafa" stroke="#e2e2e2"/>
+                  <rect x="139" y="15" width="82" height="60" rx="7" fill="#fafafa" stroke="#e2e2e2"/>
+                  <rect x="270" y="15" width="82" height="60" rx="7" fill="#fafafa" stroke="#e2e2e2"/>
+                  <path d="M25 48h48M156 48h48M287 48h48" stroke="#0070f3" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="49" cy="48" r="4" fill="#1e6237"/>
+                  <circle cx="180" cy="48" r="4" fill="#1e6237"/>
+                  <circle cx="311" cy="48" r="4" fill="#1e6237"/>
+                  <text x="49" y="94" text-anchor="middle" fill="#4d4d4d" font-family="Geist, sans-serif" font-size="11">Estimate</text>
+                  <text x="180" y="94" text-anchor="middle" fill="#4d4d4d" font-family="Geist, sans-serif" font-size="11">Correction</text>
+                  <text x="311" y="94" text-anchor="middle" fill="#4d4d4d" font-family="Geist, sans-serif" font-size="11">Evidence check</text>
+                </svg>
+                <figcaption>Research concept. This is not a Helios workflow.</figcaption>
+              </figure>
+            </li>
+          </ol>
+        </section>
+
+        <section class="section" aria-labelledby="helios-research-title">
+          <h2 id="helios-research-title">What this means for Helios</h2>
+          <p>This work highlights a simple principle: recommendations should rely on evidence that fits the decision. The paper studies satellite estimates of water use. It is separate research and does not describe a live Helios feature.</p>
+        </section>
+
+        <section class="section" aria-labelledby="about-helios-title">
+          <h2 id="about-helios-title">Helios, in plain language</h2>
+          <p>Helios helps growers decide when to irrigate and how much water to apply. It brings field readings, crop needs, and weather into one clear recommendation. Growers make the final call.</p>
+          <a class="research-link" href="/product.html">Explore Helios <span aria-hidden="true">→</span></a>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© 2026 Irrigant</span>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </footer>
+
+  <script>
+  /* thread the research sections: draw the rule and reveal content on scroll */
+  (function(){
+    var secs = document.querySelectorAll('.section');
+    if(!secs.length || !window.IntersectionObserver) return;
+    secs.forEach(function(el){ el.classList.add('anim'); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.18 });
+    secs.forEach(function(el){ io.observe(el); });
+  })();
+  </script>
+
+  <script>
+  function setResourcesDropdown(open) {
+    var dropdown = document.getElementById('resourcesDropdown');
+    var button = dropdown && dropdown.querySelector('.nav-dropdown-toggle');
+    var menu = document.getElementById('resourcesMenu');
+    if (!dropdown || !button || !menu) return;
+    dropdown.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+    menu.hidden = !open;
+  }
+  function toggleResourcesDropdown(e) {
+    e.stopPropagation();
+    var dropdown = document.getElementById('resourcesDropdown');
+    setResourcesDropdown(!dropdown.classList.contains('open'));
+  }
+  document.addEventListener('click', function() {
+    setResourcesDropdown(false);
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') setResourcesDropdown(false);
+  });
+  (function() {
+    var nav = document.getElementById('nav');
+    var progress = document.getElementById('progress');
+    function onScroll() {
+      var y = window.scrollY || window.pageYOffset;
+      nav.classList.toggle('scrolled', y > 16);
+      var docH = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (docH > 0 ? (y / docH * 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+</body>
+</html>

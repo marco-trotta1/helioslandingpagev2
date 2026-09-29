@@ -1,7 +1,7 @@
 # Irrigant / Helios — Landing Page
 
-Single-file static site: `index.html` (self-contained — inline CSS + JS, no build step).
-Real assets: `irrigant-logo.png`, `assets/logos/` (data-source logos).
+Static HTML site. `index.html` is the home page. `research.html` lists research and explains its connection to Helios.
+`dist/` holds the deployed copies. Real assets include `irrigant-logo.png` and `assets/logos/`.
 
 ## Design System
 Always read `DESIGN.md` before any visual or UI change. Fonts (Geist / DM Sans /

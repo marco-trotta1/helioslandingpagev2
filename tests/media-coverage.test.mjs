@@ -5,6 +5,11 @@ const html = readFileSync("index.html", "utf8");
 
 const coverage = [
   {
+    publisher: "Idaho Statesman",
+    title: "Idaho has a water shortage. Two teens are taking matters into their own hands",
+    url: "https://www.idahostatesman.com/news/local/education/article317215826.html",
+  },
+  {
     publisher: "KMVT",
     title: "Artificially saving water: Meet the Boise teens using A.I. to make farming more efficient",
     url: "https://www.kmvt.com/2026/09/18/artificially-saving-water-meet-boise-teens-using-ai-make-farming-more-efficient/",

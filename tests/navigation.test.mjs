@@ -53,4 +53,12 @@ describe("public navigation", () => {
       for (const label of labels) expect(navigation).toContain(label);
     }
   });
+
+  test("uses the shared navigation on the research page", () => {
+    const navigation = primaryNavigation("research.html");
+
+    expect(navigation).toContain("class=\"site-nav\"");
+    expect(navigation).toContain("class=\"nav-dropdown-menu resources-menu\"");
+    expect(navigation).toContain("<strong>Research</strong>");
+  });
 });

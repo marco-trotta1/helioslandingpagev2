@@ -8,11 +8,21 @@ const pages = [
   "soil-moisture-forecasting.html",
   "how-helios-helps.html",
   "machine-learning.html",
+  "research.html",
 ];
 
 const read = (path) => existsSync(path) ? readFileSync(path, "utf8") : "";
 
 describe("public SEO assets", () => {
+  test("links the research page to the preprint and separates it from Helios", () => {
+    const research = read("research.html");
+
+    expect(research).toContain('href="https://arxiv.org/abs/2609.35314"');
+    expect(research).toContain("What this means for Helios");
+    expect(research).toContain("does not describe a live Helios feature");
+    expect(research).toContain("Helios helps growers decide when to irrigate");
+  });
+
   test("positions the homepage around irrigation decisions", () => {
     const html = read("index.html");
 
@@ -46,6 +56,7 @@ describe("public SEO assets", () => {
     expect(sitemap).toContain("<loc>https://irrigant.xyz/soil-moisture-forecasting.html</loc>");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/how-helios-helps.html</loc>");
     expect(sitemap).toContain("<loc>https://irrigant.xyz/machine-learning.html</loc>");
+    expect(sitemap).toContain("<loc>https://irrigant.xyz/research.html</loc>");
   });
 
   test("gives every public page canonical and social metadata", () => {
