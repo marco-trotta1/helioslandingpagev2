@@ -481,81 +481,61 @@
     }
     main { padding-top: 64px; }
   </style>
+  <link rel="stylesheet" href="assets/site-nav.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div id="progress"></div>
 
-  <nav id="nav" aria-label="Primary navigation">
-    <div class="wrap">
-      <a class="nav-brand" href="/" aria-label="Irrigant home"><img src="assets/logos/IrrigantTRANSPARENT-2x.png" alt="Irrigant" width="288" height="96"></a>
-      <div class="nav-right">
-        <div class="nav-desktop">
-          <a href="product.html" class="nav-link" aria-current="page">Product</a>
-          <div class="nav-dropdown" id="resourcesDropdown">
-            <button class="nav-link nav-dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resourcesMenu" onclick="toggleResourcesDropdown(event)">
-            Resources
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <div class="nav-dropdown-menu resources-menu" id="resourcesMenu" role="menu" hidden>
-              <div class="nav-dropdown-group">
-                <span class="nav-dropdown-label">Explore</span>
-                <a href="#ask" class="nav-dropdown-item" role="menuitem">
-                  <strong>Ask Helios</strong>
-                  <span>Understand the call before you act</span>
-                </a>
-                <a href="index.html#media" class="nav-dropdown-item" role="menuitem">
-                  <strong>Media coverage</strong>
-                  <span>Read independent reporting on Irrigant</span>
-                </a>
-              </div>
-              <div class="nav-dropdown-group">
-                <span class="nav-dropdown-label">Guides</span>
-                <a href="irrigation-scheduling.html" class="nav-dropdown-item" role="menuitem">
-                  <strong>Irrigation Scheduling</strong>
-                  <span>Plan the next irrigation run</span>
-                </a>
-                <a href="soil-moisture-forecasting.html" class="nav-dropdown-item" role="menuitem">
-                  <strong>Soil Moisture Forecasting</strong>
-                  <span>See field conditions before they change</span>
-                </a>
-                <a href="how-helios-helps.html" class="nav-dropdown-item" role="menuitem">
-                  <strong>How Helios Helps</strong>
-                  <span>See the grower decision workflow</span>
-                </a>
-                <a href="machine-learning.html" class="nav-dropdown-item" role="menuitem">
-                  <strong>Machine Learning</strong>
-                  <span>Review the models behind Helios</span>
-                </a>
-              </div>
+  <div class="site-header" id="nav" role="navigation" aria-label="Primary navigation">
+    <div class="site-header__inner">
+      <a class="site-header__brand" href="index.html" aria-label="Irrigant home"><img src="assets/logos/IrrigantTRANSPARENT-2x.png" alt="Irrigant" width="288" height="96"></a>
+      <div class="site-header__desktop">
+        <a class="site-header__link" href="product.html" data-site-page="product.html">Product</a>
+        <div class="site-header__dropdown" id="resourcesDropdown">
+          <button class="site-header__link site-header__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="resourcesMenu">Resources<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="site-header__dropdown-menu" id="resourcesMenu" role="menu" hidden>
+            <div class="site-header__group">
+              <span class="site-header__group-label">Explore</span>
+              <a href="product.html#ask" class="site-header__dropdown-item" role="menuitem"><strong>Ask Helios</strong><span>Understand the call before you act</span></a>
+              <a href="index.html#media" class="site-header__dropdown-item" role="menuitem"><strong>Media coverage</strong><span>Read independent reporting on Irrigant</span></a>
+              <a href="research.html" class="site-header__dropdown-item" role="menuitem" data-site-resource-page="research.html"><strong>Research</strong><span>Read the preprint and its connection to Helios</span></a>
+            </div>
+            <div class="site-header__group">
+              <span class="site-header__group-label">Guides</span>
+              <a href="irrigation-scheduling.html" class="site-header__dropdown-item" role="menuitem" data-site-resource-page="irrigation-scheduling.html"><strong>Irrigation Scheduling</strong><span>Plan the next irrigation run</span></a>
+              <a href="soil-moisture-forecasting.html" class="site-header__dropdown-item" role="menuitem" data-site-resource-page="soil-moisture-forecasting.html"><strong>Soil Moisture Forecasting</strong><span>See field conditions before they change</span></a>
+              <a href="how-helios-helps.html" class="site-header__dropdown-item" role="menuitem" data-site-resource-page="how-helios-helps.html"><strong>How Helios Helps</strong><span>See the grower decision workflow</span></a>
+              <a href="machine-learning.html" class="site-header__dropdown-item" role="menuitem" data-site-resource-page="machine-learning.html"><strong>Machine Learning</strong><span>Review the models behind Helios</span></a>
             </div>
           </div>
-          <a href="pricing.html" class="nav-link">Pricing</a>
-          <a href="about.html" class="nav-link">About</a>
         </div>
-        <a href="index.html#quote" class="btn btn-primary btn-sm nav-cta">Request a quote</a>
-        <button class="nav-menu-toggle" id="navMenuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+        <a class="site-header__link" href="pricing.html" data-site-page="pricing.html">Pricing</a>
+        <a class="site-header__link" href="about.html" data-site-page="about.html">About</a>
+        <a class="site-header__cta site-header__cta--desktop" href="index.html#quote">Request a quote</a>
+      </div>
+      <button class="site-header__menu-toggle" id="navMenuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <svg class="site-header__menu-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><svg class="site-header__close-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="site-header__mobile-menu" id="mobileMenu" hidden>
+      <div class="site-header__mobile-links">
+        <a href="product.html" data-site-page="product.html">Product</a>
+        <span class="site-header__mobile-label">Resources</span>
+        <a class="site-header__mobile-subitem" href="product.html#ask">Ask Helios</a>
+        <a class="site-header__mobile-subitem" href="index.html#media">Media coverage</a>
+        <a class="site-header__mobile-subitem" href="research.html" data-site-resource-page="research.html">Research</a>
+        <span class="site-header__mobile-label">Guides</span>
+        <a class="site-header__mobile-subitem" href="irrigation-scheduling.html" data-site-resource-page="irrigation-scheduling.html">Irrigation scheduling</a>
+        <a class="site-header__mobile-subitem" href="soil-moisture-forecasting.html" data-site-resource-page="soil-moisture-forecasting.html">Soil moisture forecasting</a>
+        <a class="site-header__mobile-subitem" href="how-helios-helps.html" data-site-resource-page="how-helios-helps.html">How Helios helps</a>
+        <a class="site-header__mobile-subitem" href="machine-learning.html" data-site-resource-page="machine-learning.html">Machine learning</a>
+        <a href="pricing.html" data-site-page="pricing.html">Pricing</a>
+        <a href="about.html" data-site-page="about.html">About</a>
+        <a class="site-header__cta" href="index.html#quote">Request a quote</a>
       </div>
     </div>
-    <div class="mobile-menu" id="mobileMenu" hidden>
-      <div class="mobile-menu-links">
-        <a href="product.html" aria-current="page">Product</a>
-        <span class="mobile-guide">Resources</span>
-        <a href="#ask">Ask Helios</a>
-        <a href="index.html#media">Media coverage</a>
-        <span class="mobile-guide">Guides</span>
-        <a href="irrigation-scheduling.html">Irrigation scheduling</a>
-        <a href="soil-moisture-forecasting.html">Soil-moisture forecasting</a>
-        <a href="how-helios-helps.html">How Helios helps</a>
-        <a href="machine-learning.html">Machine learning</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="index.html#quote" class="btn btn-primary">Request a quote</a>
-      </div>
-    </div>
-  </nav>
+  </div>
 
   <main id="main">
   <!-- FEATURES -->
@@ -690,179 +670,6 @@
     </div>
   </footer>
 
-  <script>
-  function setResourcesDropdown(open) {
-    var dropdown = document.getElementById('resourcesDropdown');
-    var button = dropdown && dropdown.querySelector('.nav-dropdown-toggle');
-    var menu = document.getElementById('resourcesMenu');
-    if (!dropdown || !button || !menu) return;
-    dropdown.classList.toggle('open', open);
-    button.setAttribute('aria-expanded', String(open));
-    menu.hidden = !open;
-  }
-  function toggleResourcesDropdown(e) {
-    e.stopPropagation();
-    var dropdown = document.getElementById('resourcesDropdown');
-    setResourcesDropdown(!dropdown.classList.contains('open'));
-  }
-  function setMobileMenu(open) {
-    var menu = document.getElementById('mobileMenu');
-    var button = document.getElementById('navMenuToggle');
-    if (!menu || !button) return;
-    menu.hidden = !open;
-    button.setAttribute('aria-expanded', String(open));
-    button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    document.documentElement.classList.toggle('menu-open', open);
-  }
-  document.getElementById('navMenuToggle').addEventListener('click', function(e) {
-    e.stopPropagation();
-    setMobileMenu(document.getElementById('mobileMenu').hidden);
-  });
-  document.querySelectorAll('#mobileMenu a').forEach(function(link) {
-    link.addEventListener('click', function() { setMobileMenu(false); });
-  });
-  document.addEventListener('click', function(e) {
-    var dropdown = document.getElementById('resourcesDropdown');
-    var nav = document.getElementById('nav');
-    if (dropdown && !dropdown.contains(e.target)) setResourcesDropdown(false);
-    if (nav && !nav.contains(e.target)) setMobileMenu(false);
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      setResourcesDropdown(false);
-      setMobileMenu(false);
-    }
-  });
-
-  (function(){
-    'use strict';
-    var supportsReveal = 'IntersectionObserver' in window;
-    if(supportsReveal) document.body.classList.add('js-ready');
-    var nav = document.getElementById('nav');
-    var progress = document.getElementById('progress');
-    function onScroll(){
-      var y = window.scrollY || window.pageYOffset;
-      nav.classList.toggle('scrolled', y > 16);
-      var h = document.documentElement.scrollHeight - window.innerHeight;
-      progress.style.width = (h > 0 ? Math.min(100, y / h * 100) : 0) + '%';
-    }
-    window.addEventListener('scroll', onScroll, { passive:true });
-    onScroll();
-
-    if(supportsReveal){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.16 });
-      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-      var stitchIO = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){ e.target.classList.add('in'); stitchIO.unobserve(e.target); }
-        });
-      }, { threshold: 0.35 });
-      document.querySelectorAll('.stitch').forEach(function(el){ stitchIO.observe(el); });
-    } else {
-      document.querySelectorAll('.reveal, .stitch').forEach(function(el){ el.classList.add('in'); });
-    }
-
-    /* ---- Ask Helios section: questions typed, answered, erased, retyped ---- */
-    (function(){
-      var qEl = document.getElementById('askQ');
-      var aEl = document.getElementById('askA');
-      var bEl = document.getElementById('askABody');
-      if(!qEl || !aEl || !bEl) return;
-
-      var QA = [
-        { q: 'My neighbor waters every other day. Should I match that?',
-          a: 'Not on this ground. Your loam holds more available water than the sand across the road, so the same crop water demand takes longer to pull you down to threshold. On this illustrative forecast the next set lands in <b>three days</b>, not two.',
-          c: ['Helios forecast','OpenET','SSURGO soils','U of Idaho extension'] },
-        { q: 'Rain is called for Thursday. Do I skip tonight?',
-          a: '<b>Not worth the gamble.</b> The forecast puts you below threshold before the front arrives, and rain that size lands mostly in the top few inches. A short set tonight keeps the root zone covered either way.',
-          c: ['Helios forecast','NOAA','AgriMet'] },
-        { q: 'How much water am I losing past the roots?',
-          a: 'In this illustrative example, the two longest runs account for most of the drainage below the root zone. The next call shows a shorter timing window.',
-          c: ['Helios forecast','Field history','OpenET'] },
-        { q: 'Why did the call change since this morning?',
-          a: 'The high moved up and crop water demand rose with it, so the profile now crosses threshold earlier than the overnight run showed. Nothing about your soil or crop stage changed in this illustrative example.',
-          c: ['Helios forecast','NOAA'] }
-      ];
-
-      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var i = 0, tm = [];
-      function at(fn, ms){ tm.push(setTimeout(fn, ms)); }
-      function stop(){ tm.forEach(clearTimeout); tm = []; }
-
-      function pending(label){
-        bEl.innerHTML = '<span class="ask-thinking">' + label + ' <i></i><i></i><i></i></span>';
-        aEl.classList.add('show');
-      }
-
-      function showAnswer(item){
-        pending('Reading your field data');
-        at(function(){
-          bEl.innerHTML = item.a + '<div class="ask-cites">' +
-            item.c.map(function(n){ return '<span>' + n + '</span>'; }).join('') + '</div>';
-          at(erase, 6200);
-        }, 1000);
-      }
-
-      function type(item){
-        pending('Listening');
-        var n = 0;
-        (function step(){
-          qEl.textContent = item.q.slice(0, n);
-          if(n++ <= item.q.length) at(step, 34);
-          else at(function(){ showAnswer(item); }, 380);
-        })();
-      }
-
-      function erase(){
-        aEl.classList.remove('show');
-        at(function(){
-          var t = qEl.textContent;
-          (function back(){
-            t = t.slice(0, -1);
-            qEl.textContent = t;
-            if(t.length) at(back, 12);
-            else at(next, 320);
-          })();
-        }, 420);
-      }
-
-      function next(){ i = (i + 1) % QA.length; type(QA[i]); }
-
-      function start(){
-        stop();
-        if(reduce){
-          var it = QA[0];
-          qEl.textContent = it.q;
-          bEl.innerHTML = it.a + '<div class="ask-cites">' + it.c.map(function(n){ return '<span>' + n + '</span>'; }).join('') + '</div>';
-          aEl.classList.add('show');
-          return;
-        }
-        type(QA[i]);
-      }
-
-      /* only run while the panel is on screen */
-      var running = false;
-      if(window.IntersectionObserver){
-        var io2 = new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if(e.isIntersecting && !running){ running = true; start(); }
-            else if(!e.isIntersecting && running){ running = false; stop(); }
-          });
-        }, { threshold: 0.25 });
-        io2.observe(document.querySelector('.ask-panel'));
-      } else {
-        running = true;
-        start();
-      }
-    })();
-  })();
-  </script>
+  <script src="assets/site-nav.js" defer></script>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 Static HTML site. `index.html` is the home page. `research.html` lists research and explains its connection to Helios.
 `dist/` holds the deployed copies. Real assets include `irrigant-logo.png` and `assets/logos/`.
+The shared site header lives in `assets/site-nav.css` and `assets/site-nav.js`. Keep their copies in `dist/assets/` in sync.
 
 ## Design System
 Always read `DESIGN.md` before any visual or UI change. Fonts (Geist / DM Sans /
