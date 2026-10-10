@@ -85,7 +85,7 @@
     .nav-link { font-size: 14px; letter-spacing: -0.02em; color: var(--body); text-decoration: none; transition: color .15s; background: none; border: none; cursor: pointer; font-family: var(--font); }
     .nav-link:hover { color: var(--ink); }
     .nav-link[aria-current="page"] { color: var(--ink); font-weight: 500; }
-    @media (max-width: 640px) { .nav-link.hide-sm { display: none; } }
+    @media (max-width: 640px) { .hide-sm { display: none; } }
 
     /* resources dropdown */
     .nav-dropdown { position: relative; }
@@ -205,7 +205,7 @@
     @media (max-width: 640px) {
       .arb-stats { grid-template-columns: 1fr; }
       .speed-grid { grid-template-columns: 1fr; }
-      .arb-bars { gap: 14px; height: 240px; }
+      .arb-bars { gap: 14px; }
     }
     @media (prefers-reduced-motion: reduce) {
       .reveal { transition: none; }
